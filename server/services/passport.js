@@ -3,7 +3,7 @@ const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const mongoose = require("mongoose");
 const keys = require("../config/keys");
 
-const User = mongoose.model("users");
+const User = mongoose.model("User");
 
 //user id is id of record stored in mongodb
 passport.serializeUser((user, done) => {
@@ -14,6 +14,8 @@ passport.deserializeUser(async (id, done) => {
   const user = await User.findById(id);
   done(null, user);
 });
+
+passport.use(User.createStrategy());
 
 passport.use(
   new GoogleStrategy(

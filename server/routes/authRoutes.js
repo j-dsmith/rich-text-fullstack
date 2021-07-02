@@ -1,6 +1,12 @@
 const passport = require("passport");
+const mongoose = require("mongoose");
+const User = mongoose.model("User");
 
 module.exports = (app) => {
+  app.get("/", (req, res) => {
+    res.send(req.user);
+  });
+
   //authenticate user with google strategy and ask for profile and email from google
   app.get(
     "/auth/google",
@@ -24,5 +30,22 @@ module.exports = (app) => {
 
   app.get("/api/current_user", (req, res) => {
     res.send(req.user);
+  });
+
+  app.post("/api/signup", (req, res, next) => {
+    User.register(
+      new User({ username: req.body.username, name: req.body.name }),
+      req.body.password,
+      async (err) => {
+        if (err) {
+          console.log("error while user register!", err);
+          return next(err);
+        }
+        console.log("user registered!");
+        passport.authenticate("local")(req, res, () => {
+          res.redirect("/");
+        });
+      }
+    );
   });
 };

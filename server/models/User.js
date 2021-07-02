@@ -1,9 +1,14 @@
-const mongoose = require('mongoose');
-const {Schema} = mongoose;
+const mongoose = require("mongoose");
+const { Schema } = mongoose;
+const passportLocalMongoose = require("passport-local-mongoose");
 
 const userSchema = new Schema({
   googleId: String,
-  name: String
-})
+  username: String,
+  name: String,
+  password: String,
+});
 
-mongoose.model('users', userSchema)
+userSchema.plugin(passportLocalMongoose);
+
+mongoose.model("User", userSchema);

@@ -1,5 +1,6 @@
 import React from "react";
 import { Formik } from "formik";
+import axios from "axios";
 import * as AiIcons from "react-icons/ai";
 import * as Yup from "yup";
 import { FormContainer, FormHeader, StyledForm } from "./Signup.styles";
@@ -29,11 +30,14 @@ const SignupForm = () => {
               "Must contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
             ),
         })}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
+        onSubmit={async (values, { setSubmitting }) => {
+          console.log(values);
+
+          await axios.post("/api/signup", {
+            name: values.name,
+            password: values.password,
+            username: values.email,
+          });
         }}
       >
         <StyledForm>
