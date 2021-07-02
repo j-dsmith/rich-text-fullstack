@@ -19,7 +19,7 @@ module.exports = (app) => {
     "/auth/google/callback",
     passport.authenticate("google"),
     (req, res) => {
-      res.redirect("/home");
+      res.redirect("/");
     }
   );
 
@@ -32,11 +32,11 @@ module.exports = (app) => {
     res.send(req.user);
   });
 
-  app.post("/api/signup", (req, res, next) => {
-    User.register(
+  app.post("/api/signup", async (req, res, next) => {
+    await User.register(
       new User({ username: req.body.username, name: req.body.name }),
       req.body.password,
-      async (err) => {
+      (err) => {
         if (err) {
           console.log("error while user register!", err);
           return next(err);

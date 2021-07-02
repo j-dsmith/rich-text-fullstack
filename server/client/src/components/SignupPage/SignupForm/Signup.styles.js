@@ -85,12 +85,14 @@ export const FormHeader = styled.div`
   }
 
   p {
+    font-family: "Poppins", Arial, Helvetica, sans-serif;
     margin: 0.5rem 0;
     color: #252525;
   }
 `;
 
 export const StyledField = styled.input`
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
   height: 10%;
   padding: 0 10px;
   margin: 1rem 0;
@@ -122,8 +124,10 @@ export const StyledForm = styled(Form)`
   height: 80%;
   grid-area: f;
   color: #252525;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
 
   button {
+    font-family: "Poppins", Arial, Helvetica, sans-serif;
     height: 10%;
     padding: 10px;
     border-radius: 10px;
@@ -158,6 +162,7 @@ export const StyledForm = styled(Form)`
     }
 
     a {
+      font-family: "Poppins", Arial, Helvetica, sans-serif;
       margin-left: 1rem;
       text-decoration: none;
       color: #48e5c2;
