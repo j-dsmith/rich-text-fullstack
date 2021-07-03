@@ -5,7 +5,6 @@ import SignupForm from "./SignupForm/SignupForm";
 import SignupSvg from "./SignupSvg/SignupSvg";
 
 const SignupPage = ({ auth }) => {
-  console.log(auth);
   const { isLoading } = auth;
 
   return isLoading ? null : (

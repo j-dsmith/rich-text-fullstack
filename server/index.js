@@ -4,6 +4,7 @@ const passport = require("passport");
 const mongoose = require("mongoose");
 const keys = require("./config/keys");
 require("./models/User");
+require("./models/Project");
 require("./services/passport");
 
 mongoose.connect(keys.mongoURI, {

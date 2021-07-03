@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
+import { connect } from "react-redux";
 import { Formik } from "formik";
+import { Redirect, withRouter } from "react-router-dom";
 import axios from "axios";
 import * as AiIcons from "react-icons/ai";
 import * as Yup from "yup";
@@ -7,6 +9,8 @@ import { FormContainer, FormHeader, StyledForm } from "./Signup.styles";
 import TextInput from "./TextInput";
 
 const SignupForm = () => {
+  const [toHome, setToHome] = useState(false);
+
   return (
     <FormContainer>
       <FormHeader>
@@ -31,13 +35,14 @@ const SignupForm = () => {
             ),
         })}
         onSubmit={async (values, { setSubmitting }) => {
-          console.log(values);
-
           await axios.post("/api/signup", {
             name: values.name,
             password: values.password,
             username: values.email,
           });
+
+          setToHome(true);
+          setSubmitting(false);
         }}
       >
         <StyledForm>
@@ -54,8 +59,13 @@ const SignupForm = () => {
           </button>
         </StyledForm>
       </Formik>
+      {toHome && <Redirect to="/home" />}
     </FormContainer>
   );
 };
 
-export default SignupForm;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default withRouter(connect(mapStateToProps)(SignupForm));
