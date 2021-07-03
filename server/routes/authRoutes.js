@@ -23,10 +23,6 @@ module.exports = (app) => {
     }
   );
 
-  app.get("/api/projects", (req, res) => {
-    res.send("hi");
-  });
-
   app.get("/api/logout", (req, res) => {
     req.logout();
     res.send(req.user);
@@ -52,6 +48,4 @@ module.exports = (app) => {
       }
     );
   });
-
-  app.post("/api/projects", (req, res) => {});
 };

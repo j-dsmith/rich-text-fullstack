@@ -11,6 +11,7 @@ const noteSchema = new Schema({
     type: String,
     required: true,
   },
+  // _project: { type: Schema.Types.ObjectId, ref: "Project" },
 });
 
 module.exports = noteSchema;

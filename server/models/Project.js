@@ -8,7 +8,7 @@ const projectSchema = new Schema({
     required: true,
     unique: true,
   },
-  notes: [NoteSchema],
+  notes: { type: [NoteSchema], default: [] },
   _user: { type: Schema.Types.ObjectId, ref: "User" },
 });
 
