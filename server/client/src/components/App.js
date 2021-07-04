@@ -4,9 +4,8 @@ import { connect } from "react-redux";
 import * as actions from "../actions";
 import SignupPage from "./SignupPage/SignupPage";
 import LoadingPage from "./Loading/LoadingPage";
-import AuthRoute from "../AuthRoute";
-
-const Dashboard = () => <h1>Dash</h1>;
+import ProtectedRoute from "../ProtectedRoute";
+import Dashboard from "../Dashboard/Dashboard";
 
 class App extends Component {
   componentDidMount() {
@@ -14,18 +13,22 @@ class App extends Component {
   }
 
   render() {
-    const { authUser, isLoading } = this.props.auth;
-
+    const { _id, isLoading } = this.props.auth;
+    // ! FIX AUTH ROUTE LOGIC
     return (
       <Router>
         {isLoading && <LoadingPage />}
         <Switch>
-          <AuthRoute
-            authUser={authUser}
+          {/* <AuthRoute
             isLoading={isLoading}
-            path="/home"
+            path="/"
             type="private"
             render={() => <Dashboard />}
+          /> */}
+          <ProtectedRoute
+            path="/home"
+            component={Dashboard}
+            isAuth={_id && true}
           />
           <Route exact path="/" component={SignupPage} type="guest" />
           <Route exact path="/signup" component={SignupPage} type="guest" />

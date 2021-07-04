@@ -5,17 +5,20 @@ import { Redirect, withRouter } from "react-router-dom";
 import axios from "axios";
 import * as AiIcons from "react-icons/ai";
 import * as Yup from "yup";
+import * as actions from "../../../actions";
 import { FormContainer, FormHeader, StyledForm } from "./Signup.styles";
 import TextInput from "./TextInput";
 
-const SignupForm = () => {
+const SignupForm = (props) => {
   const [toHome, setToHome] = useState(false);
 
   return (
     <FormContainer>
       <FormHeader>
         <h1>Sign Up</h1>
-        <p>Already have an account? Log in</p>
+        <p>
+          Already have an account? <span className="login">Log in</span>
+        </p>
       </FormHeader>
       <Formik
         initialValues={{ name: "", email: "", password: "" }}
@@ -35,11 +38,13 @@ const SignupForm = () => {
             ),
         })}
         onSubmit={async (values, { setSubmitting }) => {
-          await axios.post("/api/signup", {
-            name: values.name,
-            password: values.password,
-            username: values.email,
-          });
+          await axios
+            .post("/api/signup", {
+              name: values.name,
+              password: values.password,
+              username: values.email,
+            })
+            .then(props.fetchUser());
 
           setToHome(true);
           setSubmitting(false);
@@ -59,7 +64,7 @@ const SignupForm = () => {
           </button>
         </StyledForm>
       </Formik>
-      {toHome && <Redirect to="/home" />}
+      {toHome && <Redirect to="/home" from={props.location} />}
     </FormContainer>
   );
 };
@@ -68,4 +73,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default withRouter(connect(mapStateToProps)(SignupForm));
+export default withRouter(connect(mapStateToProps, actions)(SignupForm));

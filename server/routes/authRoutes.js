@@ -26,10 +26,32 @@ module.exports = (app) => {
   app.get("/api/logout", (req, res) => {
     req.logout();
     res.send(req.user);
+    res.redirect("/login");
+  });
+
+  app.get("/login", (req, res) => {
+    res.send("login");
   });
 
   app.get("/api/current_user", (req, res) => {
     res.send(req.user);
+  });
+
+  app.post("/api/login", async (req, res, next) => {
+    const user = new User({
+      username: req.body.username,
+      password: req.body.password,
+    });
+    req.login(user, (err) => {
+      if (err) {
+        console.log(err);
+      } else {
+        passport.authenticate("local")(req, res, () => {
+          console.log("user logged in successfully");
+          res.redirect("/");
+        });
+      }
+    });
   });
 
   app.post("/api/signup", async (req, res, next) => {

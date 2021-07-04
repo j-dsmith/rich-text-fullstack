@@ -3,18 +3,21 @@ import { connect } from "react-redux";
 import { Redirect, Route } from "react-router";
 import { LoadingPage } from "./components/Loading/Loading.styles";
 
-const AuthRoute = (props) => {
-  const { authUser, type } = props;
+// ! FIX AUTH ROUTE LOGIC
 
-  if (authUser === null) return <LoadingPage />;
-  if (type === "guest" && authUser.name) return <Redirect to="/home" />;
-  else if (type === "private" && !authUser) return <Redirect to="/signup" />;
+const AuthRoute = (props) => {
+  const { auth, type } = props;
+  console.log(props);
+
+  if (auth === null) return <LoadingPage />;
+  if (type === "guest" && auth._id) return <Redirect to="/home" />;
+  else if (type === "private" && !auth._id) return <Redirect to="/signup" />;
 
   return <Route {...props} />;
 };
 
 const mapStateToProps = (state) => ({
-  auth: state.auth.authUser,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps)(AuthRoute);

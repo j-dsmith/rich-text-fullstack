@@ -89,6 +89,12 @@ export const FormHeader = styled.div`
     margin: 0.5rem 0;
     color: #252525;
   }
+
+  .login {
+    cursor: pointer;
+    color: #14967b;
+    font-weight: bold;
+  }
 `;
 
 export const StyledField = styled.input`
