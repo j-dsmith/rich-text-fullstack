@@ -13,23 +13,15 @@ class App extends Component {
   }
 
   render() {
-    const { _id, isLoading } = this.props.auth;
+    const { auth } = this.props;
+    console.log(auth);
+
     // ! FIX AUTH ROUTE LOGIC
     return (
       <Router>
-        {isLoading && <LoadingPage />}
+        {auth.isLoading && <LoadingPage />}
         <Switch>
-          {/* <AuthRoute
-            isLoading={isLoading}
-            path="/"
-            type="private"
-            render={() => <Dashboard />}
-          /> */}
-          <ProtectedRoute
-            path="/home"
-            component={Dashboard}
-            isAuth={_id && true}
-          />
+          <ProtectedRoute exact path="/home" component={Dashboard} />
           <Route exact path="/" component={SignupPage} type="guest" />
           <Route exact path="/signup" component={SignupPage} type="guest" />
         </Switch>
