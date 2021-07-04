@@ -1,28 +1,22 @@
 import React, { useEffect } from "react";
 import * as actions from "../actions";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
+import LoadingComponent from "../components/Loading/LoadingPage";
 
 const Dashboard = ({ fetchProjects, fetchUser, auth, projects }) => {
-  useEffect(() => {
-    fetchUser();
-  }, []);
-
-  const handleClick = () => {
-    console.log(auth);
-
-    if (auth.authUser.name) {
-      fetchProjects();
-    }
-
-    console.log(projects);
-  };
-
-  return (
-    <>
-      <h1>Dash</h1>
-      <button onClick={handleClick}>fetch projects</button>
-    </>
-  );
+  if (!auth._id && auth.isLoading) {
+    return <LoadingComponent />;
+  } else if (!auth._id) {
+    return <Redirect to="/signup" />;
+  } else {
+    return (
+      <>
+        <h1>Dash</h1>
+        <button>fetch projects</button>
+      </>
+    );
+  }
 };
 
 const mapStateToProps = (state) => ({

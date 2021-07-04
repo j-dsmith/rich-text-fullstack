@@ -64,7 +64,7 @@ const SignupForm = (props) => {
           </button>
         </StyledForm>
       </Formik>
-      {toHome && <Redirect to="/home" from={props.location} />}
+      {toHome && <Redirect to="/home" />}
     </FormContainer>
   );
 };
