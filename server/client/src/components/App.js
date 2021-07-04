@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../actions";
-import SignupPage from "./SignupPage/SignupPage";
+import SignupPage from "./LandingPages/SignupPage";
 import LoadingPage from "./Loading/LoadingPage";
 import ProtectedRoute from "../ProtectedRoute";
 import Dashboard from "../Dashboard/Dashboard";
-import LoginPage from "./SignupPage/Login/LoginPage";
+import LoginPage from "./LandingPages/LoginPage";
 
 class App extends Component {
   componentDidMount() {
@@ -23,14 +23,9 @@ class App extends Component {
         {auth.isLoading && <LoadingPage />}
         <Switch>
           <Route exact path="/" component={() => <SignupPage />} type="guest" />
-          <Route
-            exact
-            path="/signup"
-            render={() => <SignupPage />}
-            type="guest"
-          />
-          <Route exact path="/login" component={() => <LoginPage />} />
-          <Route exact path="/home" render={() => <Dashboard />} />
+          <Route exact path="/signup" component={SignupPage}/>
+          <Route exact path="/login"  component={LoginPage}/>
+          <ProtectedRoute exact path="/home" component={Dashboard} />
         </Switch>
       </Router>
     );

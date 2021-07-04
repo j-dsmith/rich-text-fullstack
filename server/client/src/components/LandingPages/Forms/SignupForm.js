@@ -11,7 +11,7 @@ import {
   FormHeader,
   StyledForm,
   StyledLink,
-} from "./Signup.styles";
+} from "../Landing.styles";
 import TextInput from "./TextInput";
 
 const SignupForm = (props) => {

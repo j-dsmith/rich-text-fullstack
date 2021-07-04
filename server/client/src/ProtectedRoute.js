@@ -1,20 +1,23 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
+import LoadingComponent from "./components/Loading/LoadingPage";
 
-const ProtectedRoute = ({ auth, component: Component, ...rest }) => {
-  console.log(auth.isAuthUser);
+const ProtectedRoute = ({ redirectPath, auth, component: Component, ...rest }) => {
+  const {_id, isLoading} = auth
+  
   return (
     <Route
       {...rest}
       render={(props) => {
-        if (auth.isAuthUser) {
-          console.log(auth.isAuthUser);
-          return <Component />;
-        } else {
+        if (!_id && isLoading) {
+          return <LoadingComponent/>
+        } else if(_id){
           return (
-            <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+            <Component />
           );
+        } else {
+          return <Redirect to="/login"/>
         }
       }}
     />

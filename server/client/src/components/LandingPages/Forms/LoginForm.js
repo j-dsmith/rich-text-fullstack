@@ -6,14 +6,14 @@ import {
   FormHeader,
   StyledForm,
   StyledLink,
-} from "../SignupForm/Signup.styles";
+} from "../Landing.styles";
 import { Formik } from "formik";
 import { Redirect, withRouter } from "react-router-dom";
 import axios from "axios";
 import * as AiIcons from "react-icons/ai";
 import * as Yup from "yup";
 import * as actions from "../../../actions";
-import TextInput from "../SignupForm/TextInput";
+import TextInput from "./TextInput";
 
 const LoginPage = (props) => {
   const [toHome, setToHome] = useState(false);

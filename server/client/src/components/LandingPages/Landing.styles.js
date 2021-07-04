@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Form } from "formik";
 import { Link } from "react-router-dom";
 
-export const SignupPageContainer = styled.div`
+export const LandingPageContainer = styled.div`
   height: 100vh;
   width: 100%;
   background: #fcfaf9;

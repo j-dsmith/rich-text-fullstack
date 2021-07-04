@@ -1,5 +1,5 @@
 import { useField } from "formik";
-import { StyledField, StyledError } from "./Signup.styles";
+import { StyledField, StyledError } from "../Landing.styles";
 
 const TextInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
