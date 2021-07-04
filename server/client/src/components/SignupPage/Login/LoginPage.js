@@ -1,12 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { SignupPageContainer, Brand } from "./SignupForm/Signup.styles";
-import SignupForm from "./SignupForm/SignupForm";
-import SignupSvg from "./SignupSvg/SignupSvg";
-import LoadingComponent from "../Loading/LoadingPage";
+import { SignupPageContainer, Brand } from "../SignupForm/Signup.styles";
+import LoadingComponent from "../../Loading/LoadingPage";
+import LoginForm from "./LoginForm";
+import SignupSvg from "../SignupSvg/SignupSvg";
 
-const SignupPage = ({ auth }) => {
+const LoginPage = ({ auth }) => {
   const { _id, isLoading } = auth;
 
   if (!_id && isLoading) {
@@ -20,13 +20,12 @@ const SignupPage = ({ auth }) => {
           .foc<span style={{ color: "#48e5c2" }}>us</span>
         </Brand>
         <SignupSvg />
-        <SignupForm />
+        <LoginForm />
       </SignupPageContainer>
     );
   }
 };
-
 const mapStateToProps = (state) => ({
   auth: state.auth,
 });
-export default connect(mapStateToProps)(SignupPage);
+export default connect(mapStateToProps)(LoginPage);

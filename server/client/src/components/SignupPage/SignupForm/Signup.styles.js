@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Form } from "formik";
+import { Link } from "react-router-dom";
 
 export const SignupPageContainer = styled.div`
   height: 100vh;
@@ -89,12 +90,13 @@ export const FormHeader = styled.div`
     margin: 0.5rem 0;
     color: #252525;
   }
+`;
 
-  .login {
-    cursor: pointer;
-    color: #14967b;
-    font-weight: bold;
-  }
+export const StyledLink = styled(Link)`
+  cursor: pointer;
+  color: #14967b;
+  font-weight: bold;
+  text-decoration: none;
 `;
 
 export const StyledField = styled.input`

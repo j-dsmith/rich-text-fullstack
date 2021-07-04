@@ -6,6 +6,7 @@ import SignupPage from "./SignupPage/SignupPage";
 import LoadingPage from "./Loading/LoadingPage";
 import ProtectedRoute from "../ProtectedRoute";
 import Dashboard from "../Dashboard/Dashboard";
+import LoginPage from "./SignupPage/Login/LoginPage";
 
 class App extends Component {
   componentDidMount() {
@@ -28,6 +29,7 @@ class App extends Component {
             render={() => <SignupPage />}
             type="guest"
           />
+          <Route exact path="/login" component={() => <LoginPage />} />
           <Route exact path="/home" render={() => <Dashboard />} />
         </Switch>
       </Router>

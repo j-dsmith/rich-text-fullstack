@@ -5,9 +5,10 @@ import { Redirect } from "react-router-dom";
 import LoadingComponent from "../components/Loading/LoadingPage";
 
 const Dashboard = ({ fetchProjects, fetchUser, auth, projects }) => {
-  if (!auth._id && auth.isLoading) {
+  const { _id, isLoading } = auth;
+  if (!_id && isLoading) {
     return <LoadingComponent />;
-  } else if (!auth._id) {
+  } else if (!_id) {
     return <Redirect to="/signup" />;
   } else {
     return (

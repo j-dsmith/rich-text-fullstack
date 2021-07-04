@@ -1,37 +1,34 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+
+import {
+  FormContainer,
+  FormHeader,
+  StyledForm,
+  StyledLink,
+} from "../SignupForm/Signup.styles";
 import { Formik } from "formik";
 import { Redirect, withRouter } from "react-router-dom";
 import axios from "axios";
 import * as AiIcons from "react-icons/ai";
 import * as Yup from "yup";
 import * as actions from "../../../actions";
-import {
-  FormContainer,
-  FormHeader,
-  StyledForm,
-  StyledLink,
-} from "./Signup.styles";
-import TextInput from "./TextInput";
+import TextInput from "../SignupForm/TextInput";
 
-const SignupForm = (props) => {
+const LoginPage = (props) => {
   const [toHome, setToHome] = useState(false);
 
   return (
     <FormContainer>
       <FormHeader>
-        <h1>Sign Up</h1>
+        <h1>Login</h1>
         <p>
-          Already have an account? <StyledLink to="/login">Log in</StyledLink>
+          Not registered yet? <StyledLink to="/signup">Sign up</StyledLink>
         </p>
       </FormHeader>
       <Formik
-        initialValues={{ name: "", email: "", password: "" }}
+        initialValues={{ email: "", password: "" }}
         validationSchema={Yup.object({
-          name: Yup.string()
-            .min(2, "Must be at least 2 characters")
-            .max(15, "Must be 15 characters or less")
-            .required("Required"),
           email: Yup.string()
             .email("Invalid Email Address")
             .required("Required"),
@@ -43,8 +40,7 @@ const SignupForm = (props) => {
             ),
         })}
         onSubmit={async (values, { setSubmitting }) => {
-          await axios.post("/api/signup", {
-            name: values.name,
+          await axios.post("/api/login", {
             password: values.password,
             username: values.email,
           });
@@ -55,16 +51,15 @@ const SignupForm = (props) => {
         }}
       >
         <StyledForm>
-          <TextInput label="Name" name="name" type="text" />
           <TextInput label="E-mail" name="email" type="email" />
           <TextInput label="Password" name="password" type="password" />
 
           <button type="submit" id="submit-btn" className="submitBtn">
-            Create an Account
+            Login
           </button>
           <button className="googleBtn">
             <AiIcons.AiOutlineGoogle className="googleIcon" />
-            <a href="/auth/google">Sign up with Google</a>
+            <a href="/auth/google">Sign in with Google</a>
           </button>
         </StyledForm>
       </Formik>
@@ -73,8 +68,4 @@ const SignupForm = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  auth: state.auth,
-});
-
-export default withRouter(connect(mapStateToProps, actions)(SignupForm));
+export default withRouter(connect(null, actions)(LoginPage));
