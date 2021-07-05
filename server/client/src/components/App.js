@@ -5,7 +5,7 @@ import * as actions from "../actions";
 import SignupPage from "./LandingPages/SignupPage";
 import LoadingPage from "./Loading/LoadingPage";
 import ProtectedRoute from "../ProtectedRoute";
-import Dashboard from "../Dashboard/Dashboard";
+import Dashboard from "./Dashboard/Dashboard";
 import LoginPage from "./LandingPages/LoginPage";
 
 class App extends Component {
