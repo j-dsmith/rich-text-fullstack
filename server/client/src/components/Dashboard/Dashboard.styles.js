@@ -159,7 +159,7 @@ export const GoalHeader = styled.div`
   button {
     border: none;
     border-radius: 30px;
-    background-color: #22dfb7;
+    background-color: #121217;
     height: 2.5rem;
     width: 2.5rem;
     //css scan #33

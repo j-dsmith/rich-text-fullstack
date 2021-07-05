@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../actions";
+import GlobalStyle from "../globalStyles";
 import SignupPage from "./LandingPages/SignupPage";
 import LoadingPage from "./Loading/LoadingPage";
 import ProtectedRoute from "../ProtectedRoute";
@@ -16,18 +17,27 @@ class App extends Component {
   render() {
     const { auth } = this.props;
     console.log(auth._id);
+    console.log(auth);
 
     // ! FIX AUTH ROUTE LOGIC
     return (
-      <Router>
-        {auth.isLoading && <LoadingPage />}
-        <Switch>
-          <Route exact path="/" component={() => <SignupPage />} type="guest" />
-          <Route exact path="/signup" component={SignupPage}/>
-          <Route exact path="/login"  component={LoginPage}/>
-          <ProtectedRoute exact path="/home" component={Dashboard} />
-        </Switch>
-      </Router>
+      <>
+        <GlobalStyle />
+        <Router>
+          {auth.isLoading && <LoadingPage />}
+          <Switch>
+            <Route
+              exact
+              path="/"
+              component={() => <SignupPage />}
+              type="guest"
+            />
+            <Route exact path="/signup" component={SignupPage} />
+            <Route exact path="/login" component={LoginPage} />
+            <ProtectedRoute exact path="/home" component={Dashboard} />
+          </Switch>
+        </Router>
+      </>
     );
   }
 }
