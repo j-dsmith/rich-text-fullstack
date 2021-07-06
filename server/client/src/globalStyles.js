@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     background: #333;
     font-family: "Poppins", Arial, Helvetica, sans-serif;
+    overflow-y: hidden;
   }
 `;
 

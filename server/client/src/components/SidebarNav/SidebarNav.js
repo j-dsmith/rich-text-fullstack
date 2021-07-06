@@ -7,26 +7,26 @@ import SidebarTray from "./SidebarTray";
 class SidebarNav extends Component {
   state = {
     trayActive: false,
-    projectsActive: true,
+    projectsVisible: true,
     notesActive: false,
     loggedOut: false,
   };
 
   handleProjectsClick = () => {
-    const { trayActive, projectsActive, notesActive } = this.state;
+    const { trayActive, projectsVisible, notesActive } = this.state;
     if (!trayActive) {
       //if tray is not active, activate it with projects showing
       this.setState({
         trayActive: true,
-        projectsActive: true,
+        projectsVisible: true,
         notesActive: false,
       });
     }
-    if (trayActive && projectsActive) {
+    if (trayActive && projectsVisible) {
       //if tray is active with projects showing, close the tray
       this.setState({
         trayActive: false,
-        projectsActive: true,
+        projectsVisible: true,
         notesActive: false,
       });
     }
@@ -34,7 +34,7 @@ class SidebarNav extends Component {
       //if tray is active with notes showing, switch back to projects tray
       this.setState({
         trayActive: true,
-        projectsActive: true,
+        projectsVisible: true,
         notesActive: false,
       });
     }
@@ -54,7 +54,7 @@ class SidebarNav extends Component {
   handleHomeClick = () => {
     this.setState({
       trayActive: false,
-      projectsActive: true,
+      projectsVisible: true,
       notesActive: false,
     });
   };
@@ -68,7 +68,7 @@ class SidebarNav extends Component {
   };
 
   render() {
-    const { trayActive, projectsActive, notesActive } = this.state;
+    const { trayActive, projectsVisible, notesActive } = this.state;
 
     return (
       <>
@@ -89,7 +89,10 @@ class SidebarNav extends Component {
             <BsIcons.BsTrash />
           </IconContainer>
         </StyledNav>
-        <SidebarTray trayActive={trayActive} />
+        <SidebarTray
+          trayActive={trayActive}
+          projectsVisible={projectsVisible}
+        />
       </>
     );
   }

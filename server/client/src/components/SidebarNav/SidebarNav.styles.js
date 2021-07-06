@@ -13,6 +13,8 @@ export const StyledNav = styled.nav`
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
   align-items: center;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 `;
 
 export const StyledTray = styled.div`
@@ -36,6 +38,24 @@ export const StyledTray = styled.div`
 
   h2 {
     color: #fcfaf9;
+    margin: 1rem 0 0 0;
+  }
+
+  .projects-link {
+    color: #48e5c2;
+    cursor: pointer;
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+
+    h5 {
+      margin: 1rem auto 0 0;
+    }
+  }
+
+  .tile-icon {
+    display: flex;
+    align-items: center;
   }
 
   &.tray-active {
@@ -69,16 +89,16 @@ export const CardItem = styled.li`
   }
 
   &:first-child {
-    border-radius: 15px 15px 0 0;
+    border-radius: 1rem 1rem 0 0;
   }
 
   &:last-child {
-    border-radius: 0 0 15px 15px;
+    border-radius: 0 0 1rem 1rem;
     border: none;
   }
 
   &:only-child {
-    border-radius: 15px;
+    border-radius: 1rem;
   }
 `;
 
@@ -97,11 +117,6 @@ export const ProjectTile = styled.div`
   h4 {
     font-size: 1rem;
     margin: 0 auto 0 1rem;
-  }
-
-  .tile-icon {
-    display: flex;
-    align-items: center;
   }
 
   .folder {

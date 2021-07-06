@@ -13,6 +13,7 @@ import { StyledTray } from "./SidebarNav/SidebarNav.styles";
 class App extends Component {
   componentDidMount() {
     this.props.fetchUser();
+    this.props.fetchProjects();
   }
 
   render() {
