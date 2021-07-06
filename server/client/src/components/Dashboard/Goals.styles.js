@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const GoalContainer = styled.div`
   border-radius: 30px;
-  height: 300px;
+  height: 500px;
   margin: 1rem;
   display: flex;
   flex-direction: column;
@@ -23,11 +23,11 @@ export const GoalHeader = styled.div`
 
 export const GoalInput = styled.div`
   width: 100%;
-  height: 3.5rem;
   font-size: 1.25rem;
   display: flex;
 
   input {
+    min-height: 3.5rem;
     box-sizing: border-box;
     font-size: 1.25rem;
     color: #121217;
@@ -48,7 +48,8 @@ export const GoalInput = styled.div`
     border: none;
     border-radius: 0 15px 15px 0;
     background-color: #121217;
-    height: 100%;
+    min-height: 3.5rem;
+
     width: 15%;
     //css scan #33
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
@@ -81,7 +82,7 @@ export const GoalTile = styled.div`
   background-color: #121217;
   color: #fcfaf9;
   width: 100%;
-  padding: 0.5rem;
+  min-height: 3.5rem;
   font-size: 1.25rem;
   border-radius: 15px;
   margin: 0.5rem 0 0;

@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
-import PerfectScrollbar from "react-perfect-scrollbar";
 import { connect } from "react-redux";
+import { Scrollbars } from "react-custom-scrollbars";
 import * as actions from "../../actions";
 import {
   GoalContainer,
@@ -57,8 +57,13 @@ const Goals = ({ user, fetchUser }) => {
   };
 
   return (
-    <PerfectScrollbar>
-      <GoalContainer>
+    <GoalContainer>
+      <Scrollbars
+        autoHide
+        style={{
+          borderRadius: "15px 15px 0 0",
+        }}
+      >
         <GoalHeader>
           <h2>Goals</h2>
         </GoalHeader>
@@ -73,8 +78,8 @@ const Goals = ({ user, fetchUser }) => {
           <button onClick={() => handleSubmit(currentGoal)} />
         </GoalInput>
         {renderGoals()}
-      </GoalContainer>
-    </PerfectScrollbar>
+      </Scrollbars>
+    </GoalContainer>
   );
 };
 
