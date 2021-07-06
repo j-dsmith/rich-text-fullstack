@@ -11,16 +11,14 @@ import {
   GoalCheckbox,
 } from "./Goals.styles";
 
-//! Add to redux to avoid constant rerender and reinitiliaze goals array
-
 const Goals = ({ user, fetchUser }) => {
   const [currentGoal, setCurrentGoal] = useState("");
-  const [fade, setFade] = useState(null);
 
   const handleSubmit = async (currentGoal) => {
     await axios.post("/api/goals", {
       goal: currentGoal,
     });
+    setCurrentGoal("");
     fetchUser();
   };
 
@@ -52,10 +50,7 @@ const Goals = ({ user, fetchUser }) => {
             type="checkbox"
             onChange={(e) => handleChecked(e, goal._id)}
           />
-          <span>
-            {/* {goal.goal} */}
-            {goal._id}
-          </span>
+          <span>{goal.goal}</span>
         </GoalTile>
       );
     });
