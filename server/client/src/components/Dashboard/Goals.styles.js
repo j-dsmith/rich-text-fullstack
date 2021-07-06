@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const GoalContainer = styled.form`
+export const GoalContainer = styled.div`
   border-radius: 30px;
   height: 300px;
   margin: 1rem;
@@ -21,20 +21,9 @@ export const GoalHeader = styled.div`
   }
 `;
 
-export const SaveButton = styled.button`
-  background: #121217;
-  border-radius: 10px;
-  padding: 0.5rem 1rem;
-  border: none;
-  outline: none;
-  color: #48e5c2;
-  font-size: 1rem;
-  font-weight: bold;
-`;
-
 export const GoalInput = styled.div`
   width: 100%;
-  height: 3rem;
+  height: 3.5rem;
   font-size: 1.25rem;
   display: flex;
 
@@ -90,4 +79,81 @@ export const GoalInput = styled.div`
 
 export const GoalTile = styled.div`
   background-color: #121217;
+  color: #fcfaf9;
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1.25rem;
+  border-radius: 15px;
+  margin: 0.5rem 0 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+
+  animation: 400ms ease 1 fadeIn;
+
+  .fade-out {
+    animation: 400ms ease 1 fadeOut;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+`;
+
+export const GoalCheckbox = styled.input`
+  @import url("https://use.fontawesome.com/releases/v5.11.1/css/all.css");
+
+  appearance: none;
+  min-height: 1.25rem;
+  min-width: 1.25rem;
+  // background: #9ff1e0;
+  border: 2px solid #22dfb7;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 1rem;
+  transition: background-color 200ms ease;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &::after {
+    font-family: "Font Awesome 5 Free";
+    content: "\f00c";
+    font-weight: 900;
+    text-shadow: 0.5px 0.5px 2px rgba(158, 95, 95, 0.3);
+    color: #fff;
+    font-size: 0.8rem;
+    text-align: center;
+    padding: 2px;
+    display: none;
+  }
+
+  &:hover {
+    background-color: #9ff1e0;
+  }
+
+  &:checked {
+    background-color: #22dfb7;
+  }
+
+  &:checked::after {
+    display: block;
+  }
 `;

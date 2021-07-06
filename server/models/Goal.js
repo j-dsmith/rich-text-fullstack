@@ -11,6 +11,10 @@ const goalSchema = new Schema({
     type: Date,
     default: new Date(),
   },
+  complete: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 module.exports = goalSchema;

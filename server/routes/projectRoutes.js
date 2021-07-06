@@ -2,6 +2,7 @@ const requireLogin = require("../middlewares/requireLogin");
 const mongoose = require("mongoose");
 
 const Project = mongoose.model("Project");
+const User = mongoose.model("User");
 
 module.exports = (app) => {
   app.get("/api/projects", async (req, res) => {
@@ -42,5 +43,27 @@ module.exports = (app) => {
     project.notes.push(note);
     project.save();
     res.redirect("/api/projects/:projectId/notes");
+  });
+
+  app.post("/api/goals", async (req, res) => {
+    const user = await User.findOne({ _id: req.user.id });
+
+    user.goals.push({
+      ...req.body,
+    });
+    await user.save();
+    res.send("user goal added");
+  });
+
+  app.patch("/api/goals", async (req, res) => {
+    const user = await User.findOne({ _id: req.user.id });
+    const goal = user.goals.id(req.body._id);
+
+    if (req.body.complete) {
+      await user.goals.id(req.body._id).remove();
+      user.save();
+    }
+
+    res.send("user goal updated");
   });
 };
