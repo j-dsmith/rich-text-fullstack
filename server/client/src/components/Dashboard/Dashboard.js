@@ -2,23 +2,21 @@ import React from "react";
 import SidebarNav from "../SidebarNav/SidebarNav";
 import Calendar from "./Calendar";
 import { connect } from "react-redux";
-import GoalsWidget from "./GoalsWidget";
 import Goals from "./Goals";
 
-const Dashboard = ({ dailyGoal, user }) => {
-  console.log(dailyGoal, user);
+const Dashboard = ({ user }) => {
+  console.log(user);
   return (
     <>
       <Calendar />
       <Goals />
-      {/* <SidebarNav /> */}
+      <SidebarNav />
     </>
   );
 };
 
 const mapStateToProps = (state) => ({
-  dailyGoal: state.dailyGoal,
-  user: state.user,
+  user: state.auth,
 });
 
 export default connect(mapStateToProps)(Dashboard);

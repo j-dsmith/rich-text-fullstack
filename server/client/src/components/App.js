@@ -8,6 +8,7 @@ import LoadingPage from "./Loading/LoadingPage";
 import ProtectedRoute from "../ProtectedRoute";
 import Dashboard from "./Dashboard/Dashboard";
 import LoginPage from "./LandingPages/LoginPage";
+import { StyledTray } from "./SidebarNav/SidebarNav.styles";
 
 class App extends Component {
   componentDidMount() {
