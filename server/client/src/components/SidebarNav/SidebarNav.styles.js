@@ -38,7 +38,7 @@ export const StyledTray = styled.div`
 
   h2 {
     color: #fcfaf9;
-    margin: 1rem 0 0 0;
+    margin: 1rem 0;
   }
 
   .projects-link {
@@ -61,6 +61,12 @@ export const StyledTray = styled.div`
   &.tray-active {
     transform: translateY(0);
   }
+`;
+
+export const Slide = styled.div`
+  margin: 0;
+  padding: 0;
+  height: 100%;
 `;
 
 export const SidebarCard = styled.div`
@@ -102,7 +108,7 @@ export const CardItem = styled.li`
   }
 `;
 
-export const ProjectTile = styled.div`
+export const ItemTile = styled.div`
   display: flex;
   align-content: center;
   justify-content: space-between;
@@ -119,7 +125,8 @@ export const ProjectTile = styled.div`
     margin: 0 auto 0 1rem;
   }
 
-  .folder {
+  .folder,
+  .note {
     font-size: 1.25;
 
     color: #48e5c2;

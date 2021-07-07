@@ -5,7 +5,7 @@ import { Scrollbars } from "react-custom-scrollbars";
 import * as actions from "../../actions";
 import {
   GoalContainer,
-  GoalInput,
+  StyledInput,
   GoalHeader,
   GoalTile,
   GoalCheckbox,
@@ -68,15 +68,19 @@ const Goals = ({ user, fetchUser }) => {
           <h2>Goals</h2>
         </GoalHeader>
 
-        <GoalInput>
+        <StyledInput>
           <input
+            className="goal-input"
             type="text"
             placeholder="What's your focus today?"
             value={currentGoal}
             onChange={(e) => handleChange(e)}
           />
-          <button onClick={() => handleSubmit(currentGoal)} />
-        </GoalInput>
+          <button
+            className="goal-input"
+            onClick={() => handleSubmit(currentGoal)}
+          />
+        </StyledInput>
         {renderGoals()}
       </Scrollbars>
     </GoalContainer>

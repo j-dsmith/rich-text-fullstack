@@ -9,7 +9,6 @@ const noteSchema = new Schema({
   },
   content: {
     type: String,
-    required: true,
   },
   // _project: { type: Schema.Types.ObjectId, ref: "Project" },
 });

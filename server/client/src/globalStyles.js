@@ -8,6 +8,7 @@ const GlobalStyle = createGlobalStyle`
     background: #333;
     font-family: "Poppins", Arial, Helvetica, sans-serif;
     overflow-y: hidden;
+    overflow-x: hidden;
   }
 `;
 

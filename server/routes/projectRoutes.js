@@ -11,6 +11,7 @@ module.exports = (app) => {
 
       res.send(projects);
     } catch (err) {
+      console.log(err);
       res.status(422).send({ error: err.message });
     }
   });
@@ -27,7 +28,7 @@ module.exports = (app) => {
     }
   });
 
-  app.post("/api/projects", requireLogin, async (req, res, next) => {
+  app.post("/api/projects", async (req, res, next) => {
     try {
       const { title } = req.body;
 
@@ -35,7 +36,7 @@ module.exports = (app) => {
         title,
         _user: req.user.id,
       }).save();
-      res.redirect("/api/projects");
+      res.send(project);
     } catch (err) {
       res.status(422).send({ error: err.message });
     }

@@ -8,18 +8,18 @@ class SidebarNav extends Component {
   state = {
     trayActive: false,
     projectsVisible: true,
-    notesActive: false,
+    notesVisible: false,
     loggedOut: false,
   };
 
-  handleProjectsClick = () => {
-    const { trayActive, projectsVisible, notesActive } = this.state;
+  setTrayVisibility = () => {
+    const { trayActive, projectsVisible, notesVisible } = this.state;
     if (!trayActive) {
       //if tray is not active, activate it with projects showing
       this.setState({
         trayActive: true,
         projectsVisible: true,
-        notesActive: false,
+        notesVisible: false,
       });
     }
     if (trayActive && projectsVisible) {
@@ -27,27 +27,16 @@ class SidebarNav extends Component {
       this.setState({
         trayActive: false,
         projectsVisible: true,
-        notesActive: false,
+        notesVisible: false,
       });
     }
-    if (trayActive && notesActive) {
+    if (trayActive && notesVisible) {
       //if tray is active with notes showing, switch back to projects tray
       this.setState({
         trayActive: true,
         projectsVisible: true,
-        notesActive: false,
+        notesVisible: false,
       });
-    }
-  };
-
-  handleTrashClick = () => {
-    const { trayActive } = this.state;
-    const { deleted, toggleDelete } = this.props;
-    if (deleted.deleteActive) {
-      toggleDelete();
-    }
-    if (trayActive) {
-      this.setState({ trayActive: false });
     }
   };
 
@@ -55,25 +44,17 @@ class SidebarNav extends Component {
     this.setState({
       trayActive: false,
       projectsVisible: true,
-      notesActive: false,
-    });
-  };
-
-  renderSidebar = () => {
-    SidebarData.map(({ title, path, icon }) => {
-      if (title === "PROJECTS") {
-        return <div>{icon}</div>;
-      }
+      notesVisible: false,
     });
   };
 
   render() {
-    const { trayActive, projectsVisible, notesActive } = this.state;
+    const { trayActive, projectsVisible, notesVisible } = this.state;
 
     return (
       <>
         <StyledNav>
-          <IconContainer onClick={() => this.handleProjectsClick()}>
+          <IconContainer onClick={() => this.setTrayVisibility()}>
             <BsIcons.BsFolder />
           </IconContainer>
           {/* <i >
@@ -89,10 +70,7 @@ class SidebarNav extends Component {
             <BsIcons.BsTrash />
           </IconContainer>
         </StyledNav>
-        <SidebarTray
-          trayActive={trayActive}
-          projectsVisible={projectsVisible}
-        />
+        <SidebarTray trayActive={trayActive} />
       </>
     );
   }

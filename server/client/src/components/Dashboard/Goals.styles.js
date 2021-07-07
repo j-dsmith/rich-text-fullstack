@@ -21,13 +21,12 @@ export const GoalHeader = styled.div`
   }
 `;
 
-export const GoalInput = styled.div`
+export const StyledInput = styled.div`
   width: 100%;
   font-size: 1.25rem;
   display: flex;
 
   input {
-    min-height: 3.5rem;
     box-sizing: border-box;
     font-size: 1.25rem;
     color: #121217;
@@ -41,6 +40,14 @@ export const GoalInput = styled.div`
 
     &::placeholder {
       color: #333;
+    }
+
+    &.goal-input {
+      min-height: 3.5rem;
+    }
+
+    &.project-input {
+      min-height: 2.5rem;
     }
   }
 
@@ -64,6 +71,14 @@ export const GoalInput = styled.div`
     align-items: center;
     cursor: pointer;
     transition: background-color 200ms ease;
+
+    &.goal-input {
+      min-height: 3.5rem;
+    }
+
+    &.project-input {
+      min-height: 2.5rem;
+    }
 
     &:hover {
       background-color: rgba(18, 18, 23, 0.75);
