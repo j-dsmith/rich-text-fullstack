@@ -46,7 +46,6 @@ module.exports = (app) => {
     try {
       const note = {
         title: req.body.title,
-        content: req.body.content,
       };
       const project = await Project.findOne({
         _id: req.params.projectId,
@@ -54,9 +53,10 @@ module.exports = (app) => {
       });
       project.notes.push(note);
       project.save();
-      res.redirect("/api/projects/:projectId/notes");
+      res.send(project);
     } catch (err) {
-      res.status(422).send({ error: err.message });
+      console.log(err);
+      res.status(422).send({ error: err });
     }
   });
 
