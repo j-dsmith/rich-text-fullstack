@@ -30,5 +30,10 @@ app.use(passport.session());
 require("./routes/authRoutes")(app);
 require("./routes/projectRoutes")(app);
 
+// app.use((err, req, res, next) => {
+//   //console.log(err)
+//   res.status(422).send({ error: error.message });
+// });
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);
