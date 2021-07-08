@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 import * as BsIcons from "react-icons/bs";
@@ -8,8 +8,6 @@ import {
   SidebarCard,
   CardItem,
   ItemTile,
-  Slide,
-  DeleteButton,
 } from "./SidebarNav.styles";
 import { StyledInput } from "../Dashboard/Goals.styles";
 import axios from "axios";
@@ -18,6 +16,10 @@ const SidebarTray = ({ trayActive, deleteActive, projects, fetchProjects }) => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [newProjectTitle, setNewProjectTitle] = useState("");
   const [newNoteTitle, setNewNoteTitle] = useState("");
+
+  useEffect(() => {
+    fetchProjects();
+  });
 
   const handleProjectClick = (id) => {
     setSelectedProject(id);

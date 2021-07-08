@@ -1,6 +1,6 @@
 import { FETCH_USER } from "../actions/types";
 
-export default (state = { isLoading: true }, action) => {
+const authReducer = (state = { isLoading: true }, action) => {
   console.log(action);
   switch (action.type) {
     case FETCH_USER:
@@ -9,3 +9,5 @@ export default (state = { isLoading: true }, action) => {
       return state;
   }
 };
+
+export default authReducer;

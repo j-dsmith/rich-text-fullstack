@@ -15,6 +15,7 @@ export const GoalHeader = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
+  text-shadow: 0.5px 0.5px 3px rgba(0, 0, 0, 0.4);
 
   h2 {
     margin: 1rem 0;
@@ -104,7 +105,7 @@ export const StyledInput = styled.div`
       animation-fill-mode: forwards;
     }
 
-    .plus-btn {
+    .add-btn {
       transform: rotate(45deg);
       font-size: 1.75rem;
       color: #48e5c2;

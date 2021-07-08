@@ -68,6 +68,9 @@ const Calendar = () => {
         numDays = 31;
         monthName = "December";
         break;
+      default:
+        numDays = 0;
+        monthName = "";
     }
 
     //return object with date information

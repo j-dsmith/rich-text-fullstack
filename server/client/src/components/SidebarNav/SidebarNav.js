@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { StyledNav, IconContainer } from "./SidebarNav.styles";
-import { SidebarData } from "./SidebarData";
 import * as BsIcons from "react-icons/bs";
 import SidebarTray from "./SidebarTray";
 

@@ -39,6 +39,7 @@ export const StyledTray = styled.div`
   h2 {
     color: #fcfaf9;
     margin: 1rem 0;
+    text-shadow: 0.5px 0.5px 3px rgba(0, 0, 0, 0.4);
   }
 
   .projects-link {
@@ -50,6 +51,7 @@ export const StyledTray = styled.div`
 
     h5 {
       margin: 1rem auto 0 0;
+      text-shadow: 0.5px 0.5px 3px rgba(0, 0, 0, 0.4);
     }
   }
 

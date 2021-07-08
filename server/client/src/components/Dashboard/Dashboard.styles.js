@@ -8,7 +8,20 @@ export const DashboardContainer = styled.div`
 `;
 
 export const DashboardHeader = styled.div`
-  border: 1px solid red;
+  color: #fcfaf9;
+  padding: 0;
+  text-shadow: 0.5px 0.5px 3px rgba(0, 0, 0, 0.4);
+
+  h1 {
+    margin: 0 1rem 2rem 1rem;
+    color: #48e5c2;
+    line-height: 2rem;
+  }
+  h2 {
+    line-height: 2rem;
+    margin: 1rem 1rem 0 1rem;
+    font-weight: 400;
+  }
 `;
 
 export const StyledCalendar = styled.div`
