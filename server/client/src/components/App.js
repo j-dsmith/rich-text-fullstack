@@ -8,10 +8,12 @@ import LoadingPage from "./Loading/LoadingPage";
 import ProtectedRoute from "../ProtectedRoute";
 import Dashboard from "./Dashboard/Dashboard";
 import LoginPage from "./LandingPages/LoginPage";
+import MyEditor from "./Editor/Editor";
 
 class App extends Component {
-  componentDidMount() {
-    this.props.fetchUser();
+  async componentDidMount() {
+    await this.props.fetchUser();
+    this.props.fetchProjects();
   }
 
   render() {
@@ -33,6 +35,11 @@ class App extends Component {
             <Route exact path="/signup" component={SignupPage} />
             <Route exact path="/login" component={LoginPage} />
             <ProtectedRoute exact path="/home" component={Dashboard} />
+            <ProtectedRoute
+              exact
+              path="/projects/:projectId/notes/:noteId"
+              component={MyEditor}
+            />
           </Switch>
         </Router>
       </>
