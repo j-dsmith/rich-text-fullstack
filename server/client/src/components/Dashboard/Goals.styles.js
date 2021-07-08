@@ -37,6 +37,7 @@ export const StyledInput = styled.div`
     width: 85%;
     border-radius: 15px 0 0 15px;
     background: #48e5c2;
+    transition: background-color 400ms ease;
 
     &::placeholder {
       color: #333;
@@ -48,6 +49,14 @@ export const StyledInput = styled.div`
 
     &.project-input {
       min-height: 2.5rem;
+    }
+
+    &.delete-active {
+      background-color: #c2c2c2;
+    }
+
+    &.delete-active::placeholder {
+      color: #c2c2c2;
     }
   }
 
@@ -66,11 +75,10 @@ export const StyledInput = styled.div`
     font-size: 1rem;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    place-items: center;
     cursor: pointer;
-    transition: background-color 200ms ease;
+    transition: background-color 400ms ease;
 
     &.goal-input {
       min-height: 3.5rem;
@@ -83,13 +91,46 @@ export const StyledInput = styled.div`
     &:hover {
       background-color: rgba(18, 18, 23, 0.75);
     }
-  }
 
-  button::after {
-    font-family: "Font Awesome 5 Free";
-    content: "\f067";
-    font-weight: 900;
-    color: #48e5c2;
+    .goal-btn {
+      transform: rotate(45deg);
+      font-size: 1.75rem;
+      color: #48e5c2;
+    }
+
+    .delete-btn {
+      font-size: 1.75rem;
+      animation: 300ms ease 1 rotateX;
+      animation-fill-mode: forwards;
+    }
+
+    .plus-btn {
+      transform: rotate(45deg);
+      font-size: 1.75rem;
+      color: #48e5c2;
+      animation: 300ms ease 1 rotatePlus;
+      animation-fill-mode: forwards;
+    }
+
+    @keyframes rotateX {
+      from {
+        transform: rotate(135deg);
+      }
+      to {
+        transform: rotate(0deg);
+        color: #e5486a;
+      }
+    }
+
+    @keyframes rotatePlus {
+      from {
+        transform: rotate(0deg);
+        color: #e5486a;
+      }
+      to {
+        transform: rotate(-135deg);
+      }
+    }
   }
 `;
 

@@ -32,7 +32,7 @@ export const StyledTray = styled.div`
   margin: 0;
   width: 100%;
   /* border-radius: 2rem 2rem 0 0; */
-  backdrop-filter: blur(1.5rem);
+  backdrop-filter: blur(1rem);
   transition: transform 300ms ease;
   padding: 0 1rem;
 
@@ -89,10 +89,11 @@ export const CardItem = styled.li`
   background-color: ${({ deleteActive }) =>
     deleteActive ? "#e5486a" : "#242424"};
   animation: 400ms ease 1 fadeIn;
-  transition: background-color 200ms ease;
+  transition: background-color 400ms ease;
 
   &:hover {
-    background-color: #121217;
+    background-color: ${({ deleteActive }) =>
+      deleteActive ? "#DF224B" : "#121217"};
   }
 
   &:first-child {
@@ -164,17 +165,6 @@ export const IconContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-
-export const DeleteButton = styled.div`
-  height: 2rem;
-  width: 2rem;
-  padding: 0;
-  display: grid;
-  place-items: center;
-  font-size: 1.5rem;
-  color: #e5486a;
-  cursor: pointer;
 `;
 
 export const TrayHeader = styled.div`

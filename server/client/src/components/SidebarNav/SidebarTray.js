@@ -142,7 +142,8 @@ const SidebarTray = ({ trayActive, deleteActive, projects, fetchProjects }) => {
       <StyledInput>
         <input
           type="text"
-          className="project-input"
+          className={`project-input ${deleteActive && "delete-active"}`}
+          disabled={deleteActive}
           placeholder={selectedProject ? "Add a new note" : "Add a new project"}
           value={selectedProject ? newNoteTitle : newProjectTitle}
           onChange={(e) => handleInputChange(e)}
@@ -154,7 +155,11 @@ const SidebarTray = ({ trayActive, deleteActive, projects, fetchProjects }) => {
               ? handleNoteSubmit(newNoteTitle)
               : handleProjectSubmit(newProjectTitle);
           }}
-        />
+        >
+          <BsIcons.BsX
+            className={`${deleteActive ? "delete-btn" : "add-btn"}`}
+          />
+        </button>
       </StyledInput>
 
       <SidebarCard>

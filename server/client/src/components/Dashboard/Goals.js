@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Scrollbars } from "react-custom-scrollbars";
 import * as actions from "../../actions";
+import * as BsIcons from "react-icons/bs";
 import {
   GoalContainer,
   StyledInput,
@@ -76,7 +77,9 @@ const Goals = ({ user, fetchUser }) => {
           <button
             className="goal-input"
             onClick={() => handleSubmit(currentGoal)}
-          />
+          >
+            <BsIcons.BsX className="goal-btn" />
+          </button>
         </StyledInput>
         {renderGoals()}
       </Scrollbars>
