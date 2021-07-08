@@ -7,6 +7,7 @@ import SidebarTray from "./SidebarTray";
 class SidebarNav extends Component {
   state = {
     trayActive: false,
+    deleteActive: false,
     projectsVisible: true,
     notesVisible: false,
     loggedOut: false,
@@ -48,8 +49,15 @@ class SidebarNav extends Component {
     });
   };
 
+  handleTrashClick = () => {
+    this.setState({
+      trayActive: true,
+      deleteActive: !this.state.deleteActive,
+    });
+  };
+
   render() {
-    const { trayActive, projectsVisible, notesVisible } = this.state;
+    const { trayActive, deleteActive } = this.state;
 
     return (
       <>
@@ -66,11 +74,11 @@ class SidebarNav extends Component {
           {/* <i >
           <BsIcons.BsStar />
         </i> */}
-          <IconContainer>
+          <IconContainer onClick={() => this.handleTrashClick()}>
             <BsIcons.BsTrash />
           </IconContainer>
         </StyledNav>
-        <SidebarTray trayActive={trayActive} />
+        <SidebarTray trayActive={trayActive} deleteActive={deleteActive} />
       </>
     );
   }

@@ -9,11 +9,12 @@ import {
   CardItem,
   ItemTile,
   Slide,
+  DeleteButton,
 } from "./SidebarNav.styles";
 import { StyledInput } from "../Dashboard/Goals.styles";
 import axios from "axios";
 
-const SidebarTray = ({ trayActive, projects, fetchProjects }) => {
+const SidebarTray = ({ trayActive, deleteActive, projects, fetchProjects }) => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [newProjectTitle, setNewProjectTitle] = useState("");
   const [newNoteTitle, setNewNoteTitle] = useState("");
@@ -46,6 +47,11 @@ const SidebarTray = ({ trayActive, projects, fetchProjects }) => {
     }
   };
 
+  const handleDelete = async (id) => {
+    await axios.delete(`/api/projects/${id}`);
+    fetchProjects();
+  };
+
   const renderTrayItems = () => {
     if (selectedProject) {
       //? if project is selected, use projects array from redux to find and map over the selected project
@@ -54,15 +60,29 @@ const SidebarTray = ({ trayActive, projects, fetchProjects }) => {
         .find((project) => project._id === selectedProject._id)
         .notes.map((note) => {
           return (
-            <CardItem key={note._id}>
+            <CardItem key={note._id} deleteActive={deleteActive}>
               <ItemTile>
-                <div className="note tile-icon">
-                  <BsIcons.BsFileText />
-                </div>
+                {deleteActive ? (
+                  <div className="minus tile-icon">
+                    <BsIcons.BsFileMinus />
+                  </div>
+                ) : (
+                  <div className="note tile-icon">
+                    <BsIcons.BsFileText />
+                  </div>
+                )}
+
                 <h4>{note.title}</h4>
-                <div className="arrow-right tile-icon">
-                  <BiIcons.BiRightArrowAlt />
-                </div>
+
+                {deleteActive ? (
+                  <div className="minus tile-icon">
+                    <BsIcons.BsX />
+                  </div>
+                ) : (
+                  <div className="arrow-right tile-icon">
+                    <BiIcons.BiRightArrowAlt />
+                  </div>
+                )}
               </ItemTile>
             </CardItem>
           );
@@ -71,16 +91,36 @@ const SidebarTray = ({ trayActive, projects, fetchProjects }) => {
 
     return projects.projects.map((project) => {
       return (
-        <CardItem key={project._id} onClick={() => handleProjectClick(project)}>
+        <CardItem
+          key={project._id}
+          onClick={() =>
+            deleteActive
+              ? handleDelete(project._id)
+              : handleProjectClick(project)
+          }
+          deleteActive={deleteActive}
+        >
           <ItemTile>
-            <div className="folder tile-icon">
-              <BsIcons.BsFolder />
-            </div>
+            {deleteActive ? (
+              <div className="minus tile-icon">
+                <BsIcons.BsFolderMinus />
+              </div>
+            ) : (
+              <div className="folder tile-icon">
+                <BsIcons.BsFolder />
+              </div>
+            )}
 
             <h4>{project.title}</h4>
-            <div className="arrow-right tile-icon">
-              <BiIcons.BiRightArrowAlt />
-            </div>
+            {deleteActive ? (
+              <div className="minus tile-icon">
+                <BsIcons.BsX />
+              </div>
+            ) : (
+              <div className="arrow-right tile-icon">
+                <BiIcons.BiRightArrowAlt />
+              </div>
+            )}
           </ItemTile>
         </CardItem>
       );
@@ -89,44 +129,37 @@ const SidebarTray = ({ trayActive, projects, fetchProjects }) => {
 
   return (
     <StyledTray className={trayActive && "tray-active"}>
-      <Slide className={selectedProject && "right"}>
-        {/* Projects link to return to projects list if notes tray is active */}
-        {selectedProject && (
-          <div
-            className="projects-link"
-            onClick={() => setSelectedProject(null)}
-          >
-            <h5>Projects</h5>
-          </div>
-        )}
+      {/* Projects link to return to projects list if notes tray is active */}
+      {selectedProject && (
+        <div className="projects-link" onClick={() => setSelectedProject(null)}>
+          <h5>Projects</h5>
+        </div>
+      )}
 
-        {/* Tray header, either "Projects" or the selected project title */}
-        <h2>{selectedProject ? selectedProject.title : "Projects"}</h2>
+      {/* Tray header, either "Projects" or the selected project title */}
+      <h2>{selectedProject ? selectedProject.title : "Projects"}</h2>
 
-        <StyledInput>
-          <input
-            type="text"
-            className="project-input"
-            placeholder={
-              selectedProject ? "Add a new note" : "Add a new project"
-            }
-            value={selectedProject ? newNoteTitle : newProjectTitle}
-            onChange={(e) => handleInputChange(e)}
-          />
-          <button
-            className="project-input"
-            onClick={() => {
-              selectedProject
-                ? handleNoteSubmit(newNoteTitle)
-                : handleProjectSubmit(newProjectTitle);
-            }}
-          />
-        </StyledInput>
+      <StyledInput>
+        <input
+          type="text"
+          className="project-input"
+          placeholder={selectedProject ? "Add a new note" : "Add a new project"}
+          value={selectedProject ? newNoteTitle : newProjectTitle}
+          onChange={(e) => handleInputChange(e)}
+        />
+        <button
+          className="project-input"
+          onClick={() => {
+            selectedProject
+              ? handleNoteSubmit(newNoteTitle)
+              : handleProjectSubmit(newProjectTitle);
+          }}
+        />
+      </StyledInput>
 
-        <SidebarCard>
-          <ul>{renderTrayItems()}</ul>
-        </SidebarCard>
-      </Slide>
+      <SidebarCard>
+        <ul>{renderTrayItems()}</ul>
+      </SidebarCard>
     </StyledTray>
   );
 };

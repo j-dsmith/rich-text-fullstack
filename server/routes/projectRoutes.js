@@ -74,18 +74,25 @@ module.exports = (app) => {
     }
   });
 
-  app.patch("/api/goals", async (req, res, next) => {
+  app.delete("/api/goals/:goalId", async (req, res, next) => {
     try {
       const user = await User.findOne({ _id: req.user.id });
-      const goal = user.goals.id(req.body._id);
 
-      if (req.body.complete) {
-        await user.goals.id(req.body._id).remove();
-        user.save();
-      }
+      await user.goals.id(req.params.goalId).remove();
+      user.save();
 
-      res.send("user goal updated");
+      res.send("goal deleted");
     } catch (err) {
+      res.status(422).send({ error: err.message });
+    }
+  });
+
+  app.delete("/api/projects/:projectId", async (req, res, next) => {
+    try {
+      await Project.findByIdAndDelete(req.params.projectId);
+      return res.status(200).json({ success: true, msg: "Project deleted" });
+    } catch (err) {
+      console.log(err);
       res.status(422).send({ error: err.message });
     }
   });

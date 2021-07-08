@@ -86,8 +86,9 @@ export const CardItem = styled.li`
   font-size: 1.25rem;
   padding: 0.75rem 1rem;
   border-bottom: 1px solid #121217;
-  background-color: #242424;
-
+  background-color: ${({ deleteActive }) =>
+    deleteActive ? "#e5486a" : "#242424"};
+  animation: 400ms ease 1 fadeIn;
   transition: background-color 200ms ease;
 
   &:hover {
@@ -105,6 +106,17 @@ export const CardItem = styled.li`
 
   &:only-child {
     border-radius: 1rem;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 `;
 
@@ -127,14 +139,18 @@ export const ItemTile = styled.div`
 
   .folder,
   .note {
-    font-size: 1.25;
+    font-size: 1.25rem;
 
     color: #48e5c2;
   }
 
+  .minus {
+    font-size: 1.25rem;
+  }
+
   .arrow-right {
     color: #fcfaf9;
-    transition: all 400ms ease;
+    transition: opacity, transform 400ms ease;
     opacity: 0;
     transform: translateX(-1rem);
   }
@@ -148,4 +164,23 @@ export const IconContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const DeleteButton = styled.div`
+  height: 2rem;
+  width: 2rem;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
+  color: #e5486a;
+  cursor: pointer;
+`;
+
+export const TrayHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding: 0;
 `;

@@ -28,10 +28,7 @@ const Goals = ({ user, fetchUser }) => {
 
   const handleChecked = async (e, id) => {
     if (e.target.checked) {
-      await axios.patch("/api/goals", {
-        complete: true,
-        _id: id,
-      });
+      await axios.delete(`/api/goals/${id}`);
       fetchUser();
       // } else if (!e.target.checked) {
       //   await axios.patch("/api/goals", {

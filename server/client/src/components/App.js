@@ -18,8 +18,6 @@ class App extends Component {
 
   render() {
     const { auth } = this.props;
-    console.log(auth._id);
-    console.log(auth);
 
     // ! FIX AUTH ROUTE LOGIC
     return (
