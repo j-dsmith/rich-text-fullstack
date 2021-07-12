@@ -19,7 +19,6 @@
     "mongoose": "^5.13.0",
     "passport": "^0.4.1",
     "passport-google-oauth20": "^2.0.0",
-    "passport-local-mongoose": "^6.1.0",
-    "react-draft-wysiwyg": "^1.14.7"
+    "passport-local-mongoose": "^6.1.0"
   }
 }

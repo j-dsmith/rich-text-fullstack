@@ -8,7 +8,8 @@ import LoadingPage from "./Loading/LoadingPage";
 import ProtectedRoute from "../ProtectedRoute";
 import Dashboard from "./Dashboard/Dashboard";
 import LoginPage from "./LandingPages/LoginPage";
-import MyEditor from "./Editor/Editor";
+import MyEditor from "./Quill/MyEditor";
+import SidebarNav from "./SidebarNav/SidebarNav";
 
 class App extends Component {
   async componentDidMount() {
@@ -41,6 +42,7 @@ class App extends Component {
               component={MyEditor}
             />
           </Switch>
+          <SidebarNav />
         </Router>
       </>
     );
