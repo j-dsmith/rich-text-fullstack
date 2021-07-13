@@ -8,10 +8,10 @@ import {
   SidebarCard,
   CardItem,
   ItemTile,
+  NavLink,
 } from "./SidebarNav.styles";
 import { StyledInput } from "../Dashboard/Goals.styles";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 const SidebarTray = ({
   trayActive,
@@ -81,7 +81,9 @@ const SidebarTray = ({
                 deleteActive ? handleDelete(note._id) : handleNoteClick(note)
               }
             >
-              <Link to={`/projects/${selectedProject._id}/notes/${note._id}`}>
+              <NavLink
+                to={`/projects/${selectedProject._id}/notes/${note._id}`}
+              >
                 <ItemTile>
                   {deleteActive ? (
                     <div className="minus tile-icon">
@@ -110,7 +112,7 @@ const SidebarTray = ({
                   to={`/projects/${selectedProject._id}/${selectedNote._id}`}
                 />
               )} */}
-              </Link>
+              </NavLink>
             </CardItem>
           );
         });

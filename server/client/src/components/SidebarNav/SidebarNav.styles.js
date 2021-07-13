@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const StyledNav = styled.nav`
   background: #121217;
@@ -14,7 +15,7 @@ export const StyledNav = styled.nav`
   justify-items: center;
   align-items: center;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    rgba(0, 0, 0, 0.9) 0px 1px 3px -1px;
 `;
 
 export const StyledTray = styled.div`
@@ -123,10 +124,17 @@ export const CardItem = styled.li`
   }
 `;
 
+export const NavLink = styled(Link)`
+  color: #fcfaf9;
+  text-decoration: none;
+`;
+
 export const ItemTile = styled.div`
   display: flex;
   align-content: center;
   justify-content: space-between;
+  color: #fcfaf9;
+  text-decoration: none;
 
   &:hover {
     .arrow-right {

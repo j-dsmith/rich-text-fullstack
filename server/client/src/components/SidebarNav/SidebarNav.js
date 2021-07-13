@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-
-import { StyledNav, IconContainer } from "./SidebarNav.styles";
+import { Link } from "react-router-dom";
+import { StyledNav, IconContainer, NavLink } from "./SidebarNav.styles";
 import * as BsIcons from "react-icons/bs";
 import SidebarTray from "./SidebarTray";
 
@@ -13,6 +13,7 @@ class SidebarNav extends Component {
     loggedOut: false,
   };
 
+  //!refactor with switch statement and arguments to determine visibility state
   setTrayVisibility = () => {
     const { trayActive, projectsVisible, notesVisible } = this.state;
     if (!trayActive) {
@@ -62,14 +63,16 @@ class SidebarNav extends Component {
     return (
       <>
         <StyledNav>
-          <IconContainer onClick={() => this.setTrayVisibility()}>
+          <IconContainer onClick={this.setTrayVisibility}>
             <BsIcons.BsFolder />
           </IconContainer>
           {/* <i >
           <BsIcons.BsCardText />
         </i> */}
           <IconContainer>
-            <BsIcons.BsHouse />
+            <NavLink to="/home" onClick={this.setTrayVisibility}>
+              <BsIcons.BsHouse />
+            </NavLink>
           </IconContainer>
           {/* <i >
           <BsIcons.BsStar />

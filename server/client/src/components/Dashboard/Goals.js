@@ -55,32 +55,33 @@ const Goals = ({ user, fetchUser }) => {
   };
 
   return (
+    //! refactor to only wrap rendered goals in scrollbar container
     <GoalContainer>
+      <GoalHeader>
+        <h2>Goals</h2>
+      </GoalHeader>
+
+      <StyledInput>
+        <input
+          className="goal-input"
+          type="text"
+          placeholder="What's your focus today?"
+          value={currentGoal}
+          onChange={(e) => handleChange(e)}
+        />
+        <button
+          className="goal-input"
+          onClick={() => handleSubmit(currentGoal)}
+        >
+          <BsIcons.BsX className="goal-btn" />
+        </button>
+      </StyledInput>
       <Scrollbars
         autoHide
         style={{
           borderRadius: "15px 15px 0 0",
         }}
       >
-        <GoalHeader>
-          <h2>Goals</h2>
-        </GoalHeader>
-
-        <StyledInput>
-          <input
-            className="goal-input"
-            type="text"
-            placeholder="What's your focus today?"
-            value={currentGoal}
-            onChange={(e) => handleChange(e)}
-          />
-          <button
-            className="goal-input"
-            onClick={() => handleSubmit(currentGoal)}
-          >
-            <BsIcons.BsX className="goal-btn" />
-          </button>
-        </StyledInput>
         {renderGoals()}
       </Scrollbars>
     </GoalContainer>
