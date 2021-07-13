@@ -1,6 +1,6 @@
-import { FETCH_PROJECT, FETCH_PROJECTS } from "../actions/types";
+import { FETCH_PROJECT, FETCH_PROJECTS, NOTE_SELECTED } from "../actions/types";
 
-const projectReducer = (state = { projects: [] }, action) => {
+const projectReducer = (state = { projects: [], selectedNote: {} }, action) => {
   switch (action.type) {
     case FETCH_PROJECTS:
       return { ...state, projects: action.payload };
@@ -9,6 +9,8 @@ const projectReducer = (state = { projects: [] }, action) => {
       return { ...state, projects: state.projects.concat(action.payload) };
     default:
       return state;
+    case NOTE_SELECTED:
+      return { ...state, selectedNote: action.payload };
   }
 };
 

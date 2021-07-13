@@ -20,7 +20,6 @@ class App extends Component {
   render() {
     const { auth } = this.props;
 
-    // ! FIX AUTH ROUTE LOGIC
     return (
       <>
         <GlobalStyle />

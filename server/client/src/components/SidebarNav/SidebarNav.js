@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import { StyledNav, IconContainer } from "./SidebarNav.styles";
 import * as BsIcons from "react-icons/bs";
 import SidebarTray from "./SidebarTray";
@@ -77,7 +78,11 @@ class SidebarNav extends Component {
             <BsIcons.BsTrash />
           </IconContainer>
         </StyledNav>
-        <SidebarTray trayActive={trayActive} deleteActive={deleteActive} />
+        <SidebarTray
+          trayActive={trayActive}
+          setTrayVisibility={this.setTrayVisibility}
+          deleteActive={deleteActive}
+        />
       </>
     );
   }

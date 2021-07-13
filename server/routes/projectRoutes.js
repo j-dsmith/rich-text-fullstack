@@ -37,6 +37,7 @@ module.exports = (app) => {
       }).save();
       res.send(project);
     } catch (err) {
+      console.log(err);
       res.status(422).send({ error: err.message });
     }
   });
@@ -69,6 +70,19 @@ module.exports = (app) => {
       await user.save();
       res.send("user goal added");
     } catch (err) {
+      res.status(422).send({ error: err.message });
+    }
+  });
+
+  app.put("/api/projects/:projectId/notes/:noteId", async (req, res) => {
+    try {
+      const project = await Project.findOne({ _id: req.params.projectId });
+      const note = await project.notes.id(req.params.noteId);
+      note.title = req.body.title;
+      note.content = req.body.content;
+      project.save();
+    } catch (err) {
+      console.log(err);
       res.status(422).send({ error: err.message });
     }
   });

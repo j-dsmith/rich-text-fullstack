@@ -7,8 +7,10 @@ export const EditorContainer = styled.div`
 `;
 
 export const NoteTitle = styled.input`
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
   color: #fcfaf9;
   font-size: 2.5rem;
+  font-weight: bold;
   width: 100%;
   box-sizing: border-box;
   background: #282828;
@@ -24,4 +26,15 @@ export const NoteTitle = styled.input`
     outline: none;
     cursor: text;
   }
+`;
+
+export const NoteTitleStatic = styled.h1`
+  color: #fcfaf9;
+  font-size: 2.5rem;
+  width: 100%;
+  box-sizing: border-box;
+  background: #282828;
+  border: none;
+  padding: 0.5rem;
+  margin: 0;
 `;

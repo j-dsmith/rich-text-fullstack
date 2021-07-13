@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 import * as BsIcons from "react-icons/bs";
@@ -11,18 +11,30 @@ import {
 } from "./SidebarNav.styles";
 import { StyledInput } from "../Dashboard/Goals.styles";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
-const SidebarTray = ({ trayActive, deleteActive, projects, fetchProjects }) => {
+const SidebarTray = ({
+  trayActive,
+  setTrayVisibility,
+  deleteActive,
+  projects,
+  fetchProjects,
+  selectedNote,
+  setSelectedNote,
+}) => {
   const [selectedProject, setSelectedProject] = useState(null);
+  // const [selectedNote, setSelectedNote] = useState(null);
   const [newProjectTitle, setNewProjectTitle] = useState("");
   const [newNoteTitle, setNewNoteTitle] = useState("");
 
-  useEffect(() => {
-    fetchProjects();
-  });
-
   const handleProjectClick = (id) => {
     setSelectedProject(id);
+  };
+
+  const handleNoteClick = (note) => {
+    console.log(note);
+    setSelectedNote(note);
+    setTrayVisibility();
   };
 
   const handleProjectSubmit = async (projectTitle) => {
@@ -62,30 +74,43 @@ const SidebarTray = ({ trayActive, deleteActive, projects, fetchProjects }) => {
         .find((project) => project._id === selectedProject._id)
         .notes.map((note) => {
           return (
-            <CardItem key={note._id} deleteActive={deleteActive}>
-              <ItemTile>
-                {deleteActive ? (
-                  <div className="minus tile-icon">
-                    <BsIcons.BsFileMinus />
-                  </div>
-                ) : (
-                  <div className="note tile-icon">
-                    <BsIcons.BsFileText />
-                  </div>
-                )}
+            <CardItem
+              key={note._id}
+              deleteActive={deleteActive}
+              onClick={(e) =>
+                deleteActive ? handleDelete(note._id) : handleNoteClick(note)
+              }
+            >
+              <Link to={`/projects/${selectedProject._id}/notes/${note._id}`}>
+                <ItemTile>
+                  {deleteActive ? (
+                    <div className="minus tile-icon">
+                      <BsIcons.BsFileMinus />
+                    </div>
+                  ) : (
+                    <div className="note tile-icon">
+                      <BsIcons.BsFileText />
+                    </div>
+                  )}
 
-                <h4>{note.title}</h4>
+                  <h4>{note.title}</h4>
 
-                {deleteActive ? (
-                  <div className="minus tile-icon">
-                    <BsIcons.BsX />
-                  </div>
-                ) : (
-                  <div className="arrow-right tile-icon">
-                    <BiIcons.BiRightArrowAlt />
-                  </div>
-                )}
-              </ItemTile>
+                  {deleteActive ? (
+                    <div className="minus tile-icon">
+                      <BsIcons.BsX />
+                    </div>
+                  ) : (
+                    <div className="arrow-right tile-icon">
+                      <BiIcons.BiRightArrowAlt />
+                    </div>
+                  )}
+                </ItemTile>
+                {/* {toNoteEditor && (
+                <Redirect
+                  to={`/projects/${selectedProject._id}/${selectedNote._id}`}
+                />
+              )} */}
+              </Link>
             </CardItem>
           );
         });
@@ -173,6 +198,7 @@ const SidebarTray = ({ trayActive, deleteActive, projects, fetchProjects }) => {
 
 const mapStateToProps = (state) => ({
   projects: state.projects,
+  noteSelected: state.noteSelected,
 });
 
 export default connect(mapStateToProps, actions)(SidebarTray);
