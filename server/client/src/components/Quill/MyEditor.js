@@ -1,37 +1,21 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { EditorContainer, NoteTitle, NoteTitleStatic } from "./Editor.styles";
+import axios from "axios";
 
-class MyEditor extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { text: "", newNoteTitle: "", editTitleActive: false };
-    this.handleTextChange = this.handleTextChange.bind(this);
-    this.handleTitleChange = this.handleTitleChange.bind(this);
-  }
+const MyEditor = ({ selectedNote, setSelectedNote, match }) => {
+  const [updatedEditorText, setUpdatedEditorText] = useState("");
 
-  componentDidMount() {
-    //fetch individual note here
-    this.setState({
-      title: this.props.selectedNote.title,
-    });
-  }
+  useEffect(() => {
+    console.log(match);
+    setUpdatedEditorText(selectedNote.content);
+  }, [selectedNote._id]);
 
-  handleTextChange(value) {
-    this.setState({ text: value });
-    console.log(this.state.text);
-  }
-
-  handleTitleChange(value) {
-    console.log(value);
-    this.setState({ noteTitle: value });
-  }
-
-  modules = {
+  const modules = {
     toolbar: [
       [{ header: [1, 2, false] }],
       ["bold", "italic", "underline", "strike", "blockquote", "code-block"],
@@ -47,7 +31,7 @@ class MyEditor extends Component {
     ],
   };
 
-  formats = [
+  const formats = [
     "header",
     "bold",
     "italic",
@@ -63,45 +47,31 @@ class MyEditor extends Component {
     "image",
   ];
 
-  render() {
-    return (
-      <EditorContainer>
-        {/* Render either an input for title changes or the existing title based on active state of title edit */}
-        {this.state.editTitleActive ? (
-          <NoteTitle
-            type="text"
-            placeholder={this.props.selectedNote.title}
-            value={this.state.newNoteTitle}
-            onChange={(e) => this.handleTitleChange(e.target.value)}
-            maxLength="50"
+  return (
+    <EditorContainer>
+      <NoteTitleStatic>{selectedNote.title || "Title"}</NoteTitleStatic>
+
+      {
+        //! setup conditional check to render empty editor
+        selectedNote._id && (
+          <ReactQuill
+            defaultValue={selectedNote.content}
+            value={updatedEditorText}
+            onChange={setUpdatedEditorText}
+            modules={modules}
+            formats={formats}
+            theme="snow"
           />
-        ) : (
-          // ? If title edit is not act
-          <NoteTitleStatic>
-            {this.props.selectedNote.title || "Title"}
-          </NoteTitleStatic>
-        )}
-        <ReactQuill
-          value={this.state.text}
-          onChange={this.handleTextChange}
-          modules={this.modules}
-          formats={this.formats}
-          theme="snow"
-        />
-        <button
-          onClick={() =>
-            this.setState({ editTitleActive: !this.state.editTitleActive })
-          }
-        >
-          toggle{" "}
-        </button>
-        <button>save</button>
-      </EditorContainer>
-    );
-  }
-}
+        )
+      }
+      <button>toggle </button>
+      <button>save</button>
+    </EditorContainer>
+  );
+};
 
 const mapStateToProps = (state) => ({
+  projects: state.projects.projects,
   selectedNote: state.projects.selectedNote,
 });
 
