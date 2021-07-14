@@ -184,6 +184,7 @@ const SidebarTray = ({
               ? handleNoteSubmit(newNoteTitle)
               : handleProjectSubmit(newProjectTitle);
           }}
+          disabled={newNoteTitle || newProjectTitle ? false : true}
         >
           <BsIcons.BsX
             className={`${deleteActive ? "delete-btn" : "add-btn"}`}

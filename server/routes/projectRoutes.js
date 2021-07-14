@@ -56,7 +56,7 @@ module.exports = (app) => {
       res.send(project);
     } catch (err) {
       console.log(err);
-      res.status(422).send({ error: err });
+      res.status(422).send({ error: err, title: err.title });
     }
   });
 
@@ -80,6 +80,7 @@ module.exports = (app) => {
       const note = await project.notes.id(req.params.noteId);
       note.title = req.body.title;
       note.content = req.body.content;
+      console.log(note);
       project.save();
     } catch (err) {
       console.log(err);

@@ -4,14 +4,14 @@ import { connect } from "react-redux";
 import * as actions from "../../actions";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { EditorContainer, NoteTitle, NoteTitleStatic } from "./Editor.styles";
+import { EditorContainer, SaveBtn, NoteTitleStatic } from "./Editor.styles";
 import axios from "axios";
 
-const MyEditor = ({ selectedNote, setSelectedNote, match }) => {
+const MyEditor = ({ selectedNote, setSelectedNote, match, fetchProjects }) => {
   const [updatedEditorText, setUpdatedEditorText] = useState("");
 
   useEffect(() => {
-    console.log(match);
+    fetchProjects();
     setUpdatedEditorText(selectedNote.content);
   }, [selectedNote._id]);
 
@@ -47,6 +47,17 @@ const MyEditor = ({ selectedNote, setSelectedNote, match }) => {
     "image",
   ];
 
+  const handleSave = async () => {
+    await axios.put(
+      `/api/projects/${match.params.projectId}/notes/${match.params.noteId}`,
+      {
+        title: selectedNote.title,
+        content: updatedEditorText,
+      }
+    );
+    fetchProjects();
+  };
+
   return (
     <EditorContainer>
       <NoteTitleStatic>{selectedNote.title || "Title"}</NoteTitleStatic>
@@ -60,12 +71,13 @@ const MyEditor = ({ selectedNote, setSelectedNote, match }) => {
             onChange={setUpdatedEditorText}
             modules={modules}
             formats={formats}
+            y
             theme="snow"
           />
         )
       }
-      <button>toggle </button>
-      <button>save</button>
+
+      <SaveBtn onClick={() => handleSave()}>SAVE</SaveBtn>
     </EditorContainer>
   );
 };

@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
 export const EditorContainer = styled.div`
-  height: 100vh;
+  height: 93vh;
   width: 100%;
   box-sizing: border-box;
+  position: relative;
 `;
 
 export const NoteTitle = styled.input`
@@ -37,4 +38,21 @@ export const NoteTitleStatic = styled.h1`
   border: none;
   padding: 0.5rem;
   margin: 0;
+`;
+
+export const SaveBtn = styled.button`
+  background-color: #333;
+  color: #48e5c2;
+  border: none;
+  font-size: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 8px 10px;
+
+  &:hover {
+    background-color: #121217;
+  }
+  position: absolute;
+  right: 1rem;
+  top: 80px;
 `;
