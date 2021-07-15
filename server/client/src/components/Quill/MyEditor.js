@@ -67,7 +67,7 @@ const MyEditor = ({ selectedNote, setSelectedNote, match, fetchProjects }) => {
         selectedNote._id && (
           <ReactQuill
             defaultValue={selectedNote.content}
-            value={updatedEditorText}
+            value={updatedEditorText || ""}
             onChange={setUpdatedEditorText}
             modules={modules}
             formats={formats}

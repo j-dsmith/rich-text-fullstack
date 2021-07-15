@@ -110,4 +110,15 @@ module.exports = (app) => {
       res.status(422).send({ error: err.message });
     }
   });
+
+  app.delete("/api/projects/:projectId/notes/:noteId", async (req, res) => {
+    try {
+      const project = await Project.findOne({ _id: req.params.projectId });
+      project.notes.id(req.params.noteId).remove();
+      project.save();
+    } catch (err) {
+      console.log(err);
+      res.status(422).send({ error: err.message });
+    }
+  });
 };

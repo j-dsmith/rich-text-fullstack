@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 import * as BsIcons from "react-icons/bs";
@@ -61,8 +61,13 @@ const SidebarTray = ({
     }
   };
 
-  const handleDelete = async (id) => {
-    await axios.delete(`/api/projects/${id}`);
+  const handleProjectDelete = async (projectId) => {
+    await axios.delete(`/api/projects/${projectId}`);
+    fetchProjects();
+  };
+
+  const handleNoteDelete = async (projectId, noteId) => {
+    await axios.delete(`/api/projects/${projectId}/notes/${noteId}`);
     fetchProjects();
   };
 
@@ -78,7 +83,9 @@ const SidebarTray = ({
               key={note._id}
               deleteActive={deleteActive}
               onClick={(e) =>
-                deleteActive ? handleDelete(note._id) : handleNoteClick(note)
+                deleteActive
+                  ? handleNoteDelete(selectedProject._id, note._id)
+                  : handleNoteClick(note)
               }
             >
               <NavLink
@@ -124,7 +131,7 @@ const SidebarTray = ({
           key={project._id}
           onClick={() =>
             deleteActive
-              ? handleDelete(project._id)
+              ? handleProjectDelete(project._id)
               : handleProjectClick(project)
           }
           deleteActive={deleteActive}
