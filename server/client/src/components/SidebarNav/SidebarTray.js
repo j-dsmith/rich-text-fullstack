@@ -1,41 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 import * as BsIcons from "react-icons/bs";
-import * as BiIcons from "react-icons/bi";
-import {
-  StyledTray,
-  SidebarCard,
-  CardItem,
-  ItemTile,
-  NavLink,
-} from "./SidebarNav.styles";
+import { StyledTray, SidebarCard } from "./SidebarNav.styles";
 import { StyledInput } from "../Dashboard/Goals.styles";
 import axios from "axios";
+import NotesList from "./NotesList";
+import ProjectsList from "./ProjectsList";
 
-const SidebarTray = ({
-  trayActive,
-  setTrayVisibility,
-  deleteActive,
-  projects,
-  fetchProjects,
-  selectedNote,
-  setSelectedNote,
-}) => {
+const SidebarTray = ({ trayActive, deleteActive, fetchProjects }) => {
   const [selectedProject, setSelectedProject] = useState(null);
-  // const [selectedNote, setSelectedNote] = useState(null);
   const [newProjectTitle, setNewProjectTitle] = useState("");
   const [newNoteTitle, setNewNoteTitle] = useState("");
-
-  const handleProjectClick = (id) => {
-    setSelectedProject(id);
-  };
-
-  const handleNoteClick = (note) => {
-    console.log(note);
-    setSelectedNote(note);
-    setTrayVisibility();
-  };
 
   const handleProjectSubmit = async (projectTitle) => {
     await axios.post("/api/projects", {
@@ -53,7 +29,7 @@ const SidebarTray = ({
     fetchProjects();
   };
 
-  const handleInputChange = (e) => {
+  const handleTitleChange = (e) => {
     if (selectedProject) {
       setNewNoteTitle(e.target.value);
     } else {
@@ -61,106 +37,23 @@ const SidebarTray = ({
     }
   };
 
-  const handleProjectDelete = async (projectId) => {
-    await axios.delete(`/api/projects/${projectId}`);
-    fetchProjects();
-  };
-
-  const handleNoteDelete = async (projectId, noteId) => {
-    await axios.delete(`/api/projects/${projectId}/notes/${noteId}`);
-    fetchProjects();
-  };
-
   const renderTrayItems = () => {
     if (selectedProject) {
-      //? if project is selected, use projects array from redux to find and map over the selected project
-      //? this makes sure the note list will rerender when the projects held in redux state is update after note is submitted
-      return projects.projects
-        .find((project) => project._id === selectedProject._id)
-        .notes.map((note) => {
-          return (
-            <CardItem
-              key={note._id}
-              deleteActive={deleteActive}
-              onClick={(e) =>
-                deleteActive
-                  ? handleNoteDelete(selectedProject._id, note._id)
-                  : handleNoteClick(note)
-              }
-            >
-              <NavLink
-                to={`/projects/${selectedProject._id}/notes/${note._id}`}
-              >
-                <ItemTile>
-                  {deleteActive ? (
-                    <div className="minus tile-icon">
-                      <BsIcons.BsFileMinus />
-                    </div>
-                  ) : (
-                    <div className="note tile-icon">
-                      <BsIcons.BsFileText />
-                    </div>
-                  )}
-
-                  <h4>{note.title}</h4>
-
-                  {deleteActive ? (
-                    <div className="minus tile-icon">
-                      <BsIcons.BsX />
-                    </div>
-                  ) : (
-                    <div className="arrow-right tile-icon">
-                      <BiIcons.BiRightArrowAlt />
-                    </div>
-                  )}
-                </ItemTile>
-                {/* {toNoteEditor && (
-                <Redirect
-                  to={`/projects/${selectedProject._id}/${selectedNote._id}`}
-                />
-              )} */}
-              </NavLink>
-            </CardItem>
-          );
-        });
+      return (
+        <NotesList
+          selectedProject={selectedProject}
+          deleteActive={deleteActive}
+        />
+      );
     }
 
-    return projects.projects.map((project) => {
-      return (
-        <CardItem
-          key={project._id}
-          onClick={() =>
-            deleteActive
-              ? handleProjectDelete(project._id)
-              : handleProjectClick(project)
-          }
-          deleteActive={deleteActive}
-        >
-          <ItemTile>
-            {deleteActive ? (
-              <div className="minus tile-icon">
-                <BsIcons.BsFolderMinus />
-              </div>
-            ) : (
-              <div className="folder tile-icon">
-                <BsIcons.BsFolder />
-              </div>
-            )}
-
-            <h4>{project.title}</h4>
-            {deleteActive ? (
-              <div className="minus tile-icon">
-                <BsIcons.BsX />
-              </div>
-            ) : (
-              <div className="arrow-right tile-icon">
-                <BiIcons.BiRightArrowAlt />
-              </div>
-            )}
-          </ItemTile>
-        </CardItem>
-      );
-    });
+    return (
+      <ProjectsList
+        selectedProject={selectedProject}
+        setSelectedProject={setSelectedProject}
+        deleteActive={deleteActive}
+      />
+    );
   };
 
   return (
@@ -182,7 +75,7 @@ const SidebarTray = ({
           disabled={deleteActive}
           placeholder={selectedProject ? "Add a new note" : "Add a new project"}
           value={selectedProject ? newNoteTitle : newProjectTitle}
-          onChange={(e) => handleInputChange(e)}
+          onChange={(e) => handleTitleChange(e)}
         />
         <button
           className="project-input"
@@ -208,7 +101,6 @@ const SidebarTray = ({
 
 const mapStateToProps = (state) => ({
   projects: state.projects,
-  noteSelected: state.noteSelected,
 });
 
 export default connect(mapStateToProps, actions)(SidebarTray);
