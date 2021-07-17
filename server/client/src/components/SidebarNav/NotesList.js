@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { CardItem, NavLink, ItemTile } from "./SidebarNav.styles";
 import * as actions from "../../actions";
 import * as BiIcons from "react-icons/bi";
 import * as BsIcons from "react-icons/bs";
+import { CSSTransition } from "react-transition-group";
 
 const NotesList = ({
   projects,
@@ -12,16 +13,24 @@ const NotesList = ({
   deleteActive,
   setSelectedNote,
   deleteNote,
+  setTrayActive,
 }) => {
+  const [fadeOutId, setFadeOutId] = useState(null);
+
   const handleNoteDelete = async (projectId, noteId) => {
     deleteNote(projectId, noteId);
 
     await axios.delete(`/api/projects/${projectId}/notes/${noteId}`);
   };
 
-  const handleNoteClick = (note) => {
-    console.log(note);
-    setSelectedNote(note);
+  const handleNoteClick = (note, noteId, selectedProjectId) => {
+    if (deleteActive) {
+      // setFadeOutId(noteId);
+      // handleNoteDelete(selectedProjectId, noteId);
+    } else {
+      setSelectedNote(note);
+      setTrayActive(false);
+    }
   };
 
   return projects.projects
@@ -30,12 +39,9 @@ const NotesList = ({
       return (
         <CardItem
           key={note._id}
+          className={note._id === fadeOutId ? "fade-out" : "fade-in"}
           deleteActive={deleteActive}
-          onClick={(e) =>
-            deleteActive
-              ? handleNoteDelete(selectedProject._id, note._id)
-              : handleNoteClick(note)
-          }
+          onClick={() => handleNoteClick(note, note._id, selectedProject._id)}
         >
           <NavLink to={`/projects/${selectedProject._id}/notes/${note._id}`}>
             <ItemTile>

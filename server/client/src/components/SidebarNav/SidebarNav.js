@@ -9,44 +9,27 @@ class SidebarNav extends Component {
     trayActive: false,
     deleteActive: false,
     projectsVisible: true,
-    notesVisible: false,
     loggedOut: false,
   };
 
   //!refactor with switch statement and arguments to determine visibility state
-  setTrayVisibility = () => {
-    const { trayActive, projectsVisible, notesVisible } = this.state;
-    if (!trayActive) {
-      //if tray is not active, activate it with projects showing
-      this.setState({
-        trayActive: true,
-        projectsVisible: true,
-        notesVisible: false,
-      });
-    }
-    if (trayActive && projectsVisible) {
-      //if tray is active with projects showing, close the tray
-      this.setState({
-        trayActive: false,
-        projectsVisible: true,
-        notesVisible: false,
-      });
-    }
-    if (trayActive && notesVisible) {
-      //if tray is active with notes showing, switch back to projects tray
-      this.setState({
-        trayActive: true,
-        projectsVisible: true,
-        notesVisible: false,
-      });
-    }
+  setTrayActive = (active) => {
+    this.setState({
+      trayActive: active,
+    });
+  };
+
+  handleProjectsClick = () => {
+    this.setState({
+      trayActive: true,
+      projectsVisible: true,
+    });
   };
 
   handleHomeClick = () => {
     this.setState({
       trayActive: false,
       projectsVisible: true,
-      notesVisible: false,
     });
   };
 
@@ -63,27 +46,27 @@ class SidebarNav extends Component {
     return (
       <>
         <StyledNav>
-          <IconContainer onClick={this.setTrayVisibility}>
+          <IconContainer onClick={this.handleProjectsClick}>
             <BsIcons.BsFolder />
           </IconContainer>
           {/* <i >
           <BsIcons.BsCardText />
         </i> */}
           <IconContainer>
-            <NavLink to="/home" onClick={this.setTrayVisibility}>
+            <NavLink to="/home" onClick={this.handleHomeClick}>
               <BsIcons.BsHouse />
             </NavLink>
           </IconContainer>
           {/* <i >
           <BsIcons.BsStar />
         </i> */}
-          <IconContainer onClick={() => this.handleTrashClick()}>
+          <IconContainer onClick={this.handleTrashClick}>
             <BsIcons.BsTrash />
           </IconContainer>
         </StyledNav>
         <SidebarTray
           trayActive={trayActive}
-          setTrayVisibility={this.setTrayVisibility}
+          setTrayActive={this.setTrayActive}
           deleteActive={deleteActive}
         />
       </>

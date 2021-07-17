@@ -14,6 +14,7 @@ import {
 
 const Goals = ({ user, fetchUser }) => {
   const [currentGoal, setCurrentGoal] = useState("");
+  const [fadeOut, setFadeOut] = useState(false);
 
   const handleSubmit = async (currentGoal) => {
     await axios.post("/api/goals", {
@@ -29,21 +30,17 @@ const Goals = ({ user, fetchUser }) => {
 
   const handleChecked = async (e, id) => {
     if (e.target.checked) {
+      setFadeOut(true);
       await axios.delete(`/api/goals/${id}`);
       fetchUser();
-      // } else if (!e.target.checked) {
-      //   await axios.patch("/api/goals", {
-      //     complete: false,
-      //     _id: id,
-      //   });
     }
+    setFadeOut(false);
   };
-  // ! top checkbox always stays checked if it is the box that is clicked
-  //! BUG FIX
+
   const renderGoals = () => {
     return user.goals.map((goal) => {
       return (
-        <GoalTile key={goal._id}>
+        <GoalTile key={goal._id} fadeOut={fadeOut}>
           <GoalCheckbox
             type="checkbox"
             onChange={(e) => handleChecked(e, goal._id)}
@@ -55,7 +52,6 @@ const Goals = ({ user, fetchUser }) => {
   };
 
   return (
-    //! refactor to only wrap rendered goals in scrollbar container
     <GoalContainer>
       <GoalHeader>
         <h2>Goals</h2>

@@ -8,7 +8,12 @@ import axios from "axios";
 import NotesList from "./NotesList";
 import ProjectsList from "./ProjectsList";
 
-const SidebarTray = ({ trayActive, deleteActive, fetchProjects }) => {
+const SidebarTray = ({
+  trayActive,
+  deleteActive,
+  fetchProjects,
+  setTrayActive,
+}) => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [newProjectTitle, setNewProjectTitle] = useState("");
   const [newNoteTitle, setNewNoteTitle] = useState("");
@@ -43,6 +48,7 @@ const SidebarTray = ({ trayActive, deleteActive, fetchProjects }) => {
         <NotesList
           selectedProject={selectedProject}
           deleteActive={deleteActive}
+          setTrayActive={setTrayActive}
         />
       );
     }

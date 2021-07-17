@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { CardItem, ItemTile } from "./SidebarNav.styles";
@@ -12,8 +12,12 @@ const ProjectsList = ({
   deleteActive,
   setSelectedProject,
 }) => {
-  const handleProjectClick = (id) => {
-    setSelectedProject(id);
+  const handleProjectClick = (project, projectId) => {
+    if (deleteActive) {
+      handleProjectDelete(projectId);
+    } else {
+      setSelectedProject(project);
+    }
   };
 
   const handleProjectDelete = async (projectId) => {
@@ -24,11 +28,7 @@ const ProjectsList = ({
     return (
       <CardItem
         key={project._id}
-        onClick={() =>
-          deleteActive
-            ? handleProjectDelete(project._id)
-            : handleProjectClick(project)
-        }
+        onClick={() => handleProjectClick(project, project._id)}
         deleteActive={deleteActive}
       >
         <ItemTile>

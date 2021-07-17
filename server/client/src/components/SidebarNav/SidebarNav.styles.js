@@ -91,7 +91,6 @@ export const CardItem = styled.li`
   border-bottom: 1px solid #121217;
   background-color: ${({ deleteActive }) =>
     deleteActive ? "#e5486a" : "#242424"};
-  animation: 400ms ease 1 fadeIn;
   transition: background-color 400ms ease;
 
   &:hover {
@@ -112,6 +111,15 @@ export const CardItem = styled.li`
     border-radius: 1rem;
   }
 
+  &.fade-out {
+    animation: 400ms ease 1 fadeOut;
+    animation-fill-mode: forwards;
+  }
+
+  &.fade-in {
+    animation: 400ms ease 1 fadeIn;
+  }
+
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -120,6 +128,17 @@ export const CardItem = styled.li`
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(10px);
     }
   }
 `;
