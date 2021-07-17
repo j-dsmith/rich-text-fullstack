@@ -16,6 +16,7 @@ const NotesList = ({
   setTrayActive,
 }) => {
   const [fadeOutId, setFadeOutId] = useState(null);
+  const [fadeOut, startFadeOut] = useState(false);
 
   const handleNoteDelete = async (projectId, noteId) => {
     deleteNote(projectId, noteId);
@@ -25,11 +26,19 @@ const NotesList = ({
 
   const handleNoteClick = (note, noteId, selectedProjectId) => {
     if (deleteActive) {
-      // setFadeOutId(noteId);
+      setFadeOutId(noteId);
+      startFadeOut(true);
       // handleNoteDelete(selectedProjectId, noteId);
     } else {
       setSelectedNote(note);
       setTrayActive(false);
+    }
+  };
+
+  const handleAnimationEnd = (selectedProjectId, noteId) => {
+    if (fadeOut) {
+      handleNoteDelete(selectedProjectId, noteId);
+      startFadeOut(false);
     }
   };
 
@@ -42,6 +51,9 @@ const NotesList = ({
           className={note._id === fadeOutId ? "fade-out" : "fade-in"}
           deleteActive={deleteActive}
           onClick={() => handleNoteClick(note, note._id, selectedProject._id)}
+          onAnimationEnd={() =>
+            handleAnimationEnd(selectedProject._id, note._id)
+          }
         >
           <NavLink to={`/projects/${selectedProject._id}/notes/${note._id}`}>
             <ItemTile>

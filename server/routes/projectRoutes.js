@@ -34,6 +34,7 @@ module.exports = (app) => {
       const project = await new Project({
         title,
         _user: req.user.id,
+        notes: [],
       }).save();
       res.send(project);
     } catch (err) {

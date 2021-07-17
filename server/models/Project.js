@@ -6,7 +6,7 @@ const projectSchema = new Schema({
   title: {
     type: String,
     required: true,
-    unique: true,
+    sparse: true,
   },
   notes: { type: [NoteSchema], default: [] },
   _user: { type: Schema.Types.ObjectId, ref: "User" },

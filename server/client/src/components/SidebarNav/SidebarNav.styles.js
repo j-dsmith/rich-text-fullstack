@@ -74,8 +74,6 @@ export const Slide = styled.div`
 
 export const SidebarCard = styled.div`
   border-radius: 1.5rem;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 
   ul {
     list-style-type: none;
@@ -92,6 +90,8 @@ export const CardItem = styled.li`
   background-color: ${({ deleteActive }) =>
     deleteActive ? "#e5486a" : "#242424"};
   transition: background-color 400ms ease;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 
   &:hover {
     background-color: ${({ deleteActive }) =>

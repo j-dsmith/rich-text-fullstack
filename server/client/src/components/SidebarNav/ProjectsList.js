@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { CardItem, ItemTile } from "./SidebarNav.styles";
@@ -12,9 +12,14 @@ const ProjectsList = ({
   deleteActive,
   setSelectedProject,
 }) => {
+  const [fadeOutId, setFadeOutId] = useState(null);
+  const [fadeOut, startFadeOut] = useState(false);
+
   const handleProjectClick = (project, projectId) => {
     if (deleteActive) {
-      handleProjectDelete(projectId);
+      setFadeOutId(projectId);
+      startFadeOut(true);
+      // handleProjectDelete(projectId);
     } else {
       setSelectedProject(project);
     }
@@ -24,11 +29,21 @@ const ProjectsList = ({
     await axios.delete(`/api/projects/${projectId}`);
     fetchProjects();
   };
+
+  const handleAnimationEnd = (projectId) => {
+    if (fadeOut) {
+      handleProjectDelete(projectId);
+      startFadeOut(false);
+    }
+  };
+
   return projects.projects.map((project) => {
     return (
       <CardItem
         key={project._id}
+        className={project._id === fadeOutId ? "fade-out" : "fade-in"}
         onClick={() => handleProjectClick(project, project._id)}
+        onAnimationEnd={() => handleAnimationEnd(project._id)}
         deleteActive={deleteActive}
       >
         <ItemTile>

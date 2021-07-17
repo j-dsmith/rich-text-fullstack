@@ -5,7 +5,8 @@ const noteSchema = new Schema({
   title: {
     type: String,
     required: true,
-    unique: true,
+    default: "",
+    sparse: true,
   },
   content: {
     type: String,

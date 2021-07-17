@@ -21,6 +21,7 @@ const SidebarTray = ({
   const handleProjectSubmit = async (projectTitle) => {
     await axios.post("/api/projects", {
       title: projectTitle,
+      notes: [],
     });
     setNewProjectTitle("");
     fetchProjects();
