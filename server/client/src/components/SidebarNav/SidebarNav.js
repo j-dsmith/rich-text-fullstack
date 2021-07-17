@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { StyledNav, IconContainer, NavLink } from "./SidebarNav.styles";
 import * as BsIcons from "react-icons/bs";
 import SidebarTray from "./SidebarTray";
@@ -8,7 +8,6 @@ class SidebarNav extends Component {
   state = {
     trayActive: false,
     deleteActive: false,
-    projectsVisible: true,
     loggedOut: false,
   };
 
@@ -20,28 +19,41 @@ class SidebarNav extends Component {
   };
 
   handleProjectsClick = () => {
-    this.setState({
-      trayActive: !this.state.trayActive,
-      projectsVisible: true,
-    });
+    if (!this.state.trayActive && this.state.deleteActive) {
+      this.setState({
+        trayActive: true,
+        deleteActive: false,
+      });
+    } else {
+      this.setState({
+        trayActive: !this.state.trayActive,
+      });
+    }
   };
 
   handleHomeClick = () => {
     this.setState({
       trayActive: false,
-      projectsVisible: true,
     });
   };
 
   handleTrashClick = () => {
-    this.setState({
-      trayActive: true,
-      deleteActive: !this.state.deleteActive,
-    });
+    if (this.state.trayActive && this.state.deleteActive) {
+      this.setState({
+        trayActive: true,
+        deleteActive: false,
+      });
+    } else {
+      this.setState({
+        trayActive: true,
+        deleteActive: true,
+      });
+    }
   };
 
   render() {
     const { trayActive, deleteActive } = this.state;
+    console.log(this.props);
 
     return (
       <>
@@ -52,6 +64,7 @@ class SidebarNav extends Component {
           {/* <i >
           <BsIcons.BsCardText />
         </i> */}
+
           <NavLink to="/home">
             <IconContainer onClick={this.handleHomeClick}>
               <BsIcons.BsHouse />
@@ -74,4 +87,4 @@ class SidebarNav extends Component {
   }
 }
 
-export default SidebarNav;
+export default withRouter(SidebarNav);

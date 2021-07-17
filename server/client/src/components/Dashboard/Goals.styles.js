@@ -153,7 +153,17 @@ export const GoalTile = styled.div`
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.9) 0px 1px 3px -1px;
 
-  animation: 400ms ease 1 ${({ fadeOut }) => (fadeOut ? "fadeOut" : "fadeIn")};
+  /* animation: 400ms ease 1 ${({ fadeOut }) =>
+    fadeOut ? "fadeOut" : "fadeIn"}; */
+
+  &.fade-out {
+    animation: 400ms ease 1 fadeOut;
+    animation-fill-mode: forwards;
+  }
+
+  &.fade-in {
+    animation: 400ms ease 1 fadeIn;
+  }
 
   @keyframes fadeIn {
     from {

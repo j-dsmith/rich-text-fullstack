@@ -188,10 +188,11 @@ export const ItemTile = styled.div`
 `;
 
 export const IconContainer = styled.div`
+  position: relative;
   font-size: 1.75rem;
   cursor: pointer;
   height: 100%;
-  width: 3.5rem;
+  width: 4.5rem;
   display: flex;
   justify-content: center;
   align-items: center;

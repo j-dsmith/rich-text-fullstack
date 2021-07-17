@@ -14,7 +14,8 @@ import {
 
 const Goals = ({ user, fetchUser }) => {
   const [currentGoal, setCurrentGoal] = useState("");
-  const [fadeOut, setFadeOut] = useState(false);
+  const [fadeOutId, setFadeOutId] = useState(null);
+  const [fadeOut, startFadeOut] = useState(false);
 
   const handleSubmit = async (currentGoal) => {
     await axios.post("/api/goals", {
@@ -30,17 +31,31 @@ const Goals = ({ user, fetchUser }) => {
 
   const handleChecked = async (e, id) => {
     if (e.target.checked) {
-      setFadeOut(true);
-      await axios.delete(`/api/goals/${id}`);
-      fetchUser();
+      setFadeOutId(id);
+      startFadeOut(true);
     }
-    setFadeOut(false);
+  };
+
+  const handleGoalDelete = async (goalId) => {
+    await axios.delete(`/api/goals/${goalId}`);
+    fetchUser();
+  };
+
+  const handleAnimationEnd = (goalId) => {
+    if (fadeOut) {
+      handleGoalDelete(goalId);
+      startFadeOut(false);
+    }
   };
 
   const renderGoals = () => {
     return user.goals.map((goal) => {
       return (
-        <GoalTile key={goal._id} fadeOut={fadeOut}>
+        <GoalTile
+          key={goal._id}
+          className={goal._id === fadeOutId ? "fade-out" : "fade-in"}
+          onAnimationEnd={() => handleAnimationEnd(goal._id)}
+        >
           <GoalCheckbox
             type="checkbox"
             onChange={(e) => handleChecked(e, goal._id)}
@@ -72,14 +87,8 @@ const Goals = ({ user, fetchUser }) => {
           <BsIcons.BsX className="goal-btn" />
         </button>
       </StyledInput>
-      <Scrollbars
-        autoHide
-        style={{
-          borderRadius: "15px 15px 0 0",
-        }}
-      >
-        {renderGoals()}
-      </Scrollbars>
+
+      {renderGoals()}
     </GoalContainer>
   );
 };
