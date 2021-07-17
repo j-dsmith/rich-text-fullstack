@@ -78,6 +78,7 @@ export const SidebarCard = styled.div`
   ul {
     list-style-type: none;
     padding: 0;
+    height: 610px;
   }
 `;
 

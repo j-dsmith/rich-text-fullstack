@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 import * as BsIcons from "react-icons/bs";
+import Scrollbars from "react-custom-scrollbars";
 import { StyledTray, SidebarCard } from "./SidebarNav.styles";
 import { StyledInput } from "../Dashboard/Goals.styles";
 import axios from "axios";
@@ -99,8 +100,15 @@ const SidebarTray = ({
         </button>
       </StyledInput>
 
-      <SidebarCard>
-        <ul>{renderTrayItems()}</ul>
+      <SidebarCard autohide>
+        <ul>
+          <Scrollbars
+            style={{ height: "100%", borderRadius: "1.5rem" }}
+            autohide
+          >
+            {renderTrayItems()}
+          </Scrollbars>
+        </ul>
       </SidebarCard>
     </StyledTray>
   );
