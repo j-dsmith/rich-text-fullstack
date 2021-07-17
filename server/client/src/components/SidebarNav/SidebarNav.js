@@ -21,7 +21,7 @@ class SidebarNav extends Component {
 
   handleProjectsClick = () => {
     this.setState({
-      trayActive: true,
+      trayActive: !this.state.trayActive,
       projectsVisible: true,
     });
   };
@@ -52,11 +52,11 @@ class SidebarNav extends Component {
           {/* <i >
           <BsIcons.BsCardText />
         </i> */}
-          <IconContainer>
-            <NavLink to="/home" onClick={this.handleHomeClick}>
+          <NavLink to="/home">
+            <IconContainer onClick={this.handleHomeClick}>
               <BsIcons.BsHouse />
-            </NavLink>
-          </IconContainer>
+            </IconContainer>
+          </NavLink>
           {/* <i >
           <BsIcons.BsStar />
         </i> */}

@@ -81,11 +81,10 @@ export const SidebarCard = styled.div`
   }
 `;
 
-export const CardItem = styled.li`
+export const CardItem = styled.div`
   color: #fcfaf9;
   cursor: pointer;
   font-size: 1.25rem;
-  padding: 0.75rem 1rem;
   border-bottom: 1px solid #121217;
   background-color: ${({ deleteActive }) =>
     deleteActive ? "#e5486a" : "#242424"};
@@ -146,6 +145,7 @@ export const CardItem = styled.li`
 export const NavLink = styled(Link)`
   color: #fcfaf9;
   text-decoration: none;
+  height: 100%;
 `;
 
 export const ItemTile = styled.div`
@@ -154,6 +154,7 @@ export const ItemTile = styled.div`
   justify-content: space-between;
   color: #fcfaf9;
   text-decoration: none;
+  padding: 0.75rem 1rem;
 
   &:hover {
     .arrow-right {
