@@ -12,14 +12,17 @@ import MyEditor from "./Quill/MyEditor";
 import SidebarNav from "./SidebarNav/SidebarNav";
 
 class App extends Component {
-  async componentDidMount() {
-    await this.props.fetchUser();
+  componentDidMount() {
+    const user = this.props.fetchUser();
+  }
+
+  componentDidUpdate() {
     this.props.fetchProjects();
   }
 
   render() {
     const { auth } = this.props;
-
+    console.log(auth);
     return (
       <>
         <GlobalStyle />
@@ -41,7 +44,7 @@ class App extends Component {
               component={MyEditor}
             />
           </Switch>
-          <SidebarNav />
+          {auth._id && <SidebarNav />}
         </Router>
       </>
     );

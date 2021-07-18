@@ -8,6 +8,7 @@ import { StyledInput } from "../Dashboard/Goals.styles";
 import axios from "axios";
 import NotesList from "./NotesList";
 import ProjectsList from "./ProjectsList";
+import { renderScrollThumb } from "../../globalStyles";
 
 const SidebarTray = ({
   trayActive,
@@ -103,8 +104,14 @@ const SidebarTray = ({
       <SidebarCard autohide>
         <ul>
           <Scrollbars
-            style={{ height: "100%", borderRadius: "1.5rem" }}
-            autohide
+            style={{
+              height: "100%",
+              borderRadius: "1.5rem",
+              padding: "1rem",
+              boxSizing: "border-box",
+            }}
+            renderThumbVertical={renderScrollThumb}
+            autoHide
           >
             {renderTrayItems()}
           </Scrollbars>

@@ -44,10 +44,10 @@ const LoginPage = (props) => {
             password: values.password,
             username: values.email,
           });
-          await props.fetchUser();
+          setSubmitting(false);
+          props.fetchUser();
 
           setToHome(true);
-          setSubmitting(false);
         }}
       >
         <StyledForm>

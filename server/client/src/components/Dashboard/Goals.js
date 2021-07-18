@@ -11,6 +11,7 @@ import {
   GoalTile,
   GoalCheckbox,
 } from "./Goals.styles";
+import { renderScrollThumb } from "../../globalStyles";
 
 const Goals = ({ user, fetchUser }) => {
   const [currentGoal, setCurrentGoal] = useState("");
@@ -66,14 +67,6 @@ const Goals = ({ user, fetchUser }) => {
     });
   };
 
-  const renderScrollThumb = ({ style, ...props }) => {
-    const thumbStyle = {
-      backgroundColor: "#48e5c2",
-      borderRadius: "1rem",
-    };
-    return <div style={{ ...style, ...thumbStyle }} {...props} />;
-  };
-
   return (
     <GoalContainer>
       <GoalHeader>
@@ -99,7 +92,9 @@ const Goals = ({ user, fetchUser }) => {
         style={{
           height: "100%",
           width: "100%",
-          borderRadius: "1.5rem",
+          borderRadius: "0 0 1.5rem 1.5rem",
+          boxShadow:
+            "box-shadow: inset 20px 20px 60px #222222, inset -20px -20px 60px #2e2e2e",
         }}
         renderThumbVertical={renderScrollThumb}
         autoHide

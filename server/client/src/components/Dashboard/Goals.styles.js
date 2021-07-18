@@ -1,21 +1,24 @@
 import styled from "styled-components";
+import { fadeIn, fadeOut } from "../../globalStyles";
 
 export const GoalContainer = styled.div`
-  border-radius: 30px;
-  height: 50vh;
-  max-height: 50vh;
+  border-radius: 2rem;
+  border: 1px solid #282828;
+  background-color: #282828;
   margin: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  grid-area: goals;
+  padding: 1rem;
+  box-shadow: inset 20px 20px 60px #222222, inset -20px -20px 60px #2e2e2e;
 
   @media screen and (max-height: 812px) {
     height: 38vh;
   }
 
   @media screen and (min-width: 1024px) {
-    width: 50%;
   }
 `;
 
@@ -35,10 +38,10 @@ export const StyledInput = styled.div`
   width: 100%;
   font-size: 1.25rem;
   display: flex;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-    rgba(0, 0, 0, 0.9) 0px 1px 3px -1px;
+
   border-radius: 15px;
   margin-bottom: 0.5rem;
+  animation: 400ms ease 1 ${fadeIn};
 
   input {
     box-sizing: border-box;
@@ -51,6 +54,8 @@ export const StyledInput = styled.div`
     border-radius: 15px 0 0 15px;
     background: #48e5c2;
     transition: background-color 400ms ease;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+      rgba(0, 0, 0, 0.9) 0px 1px 3px -1px;
 
     &::placeholder {
       color: #333;
@@ -84,8 +89,8 @@ export const StyledInput = styled.div`
 
     width: 15%;
     //css scan #33
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-      rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+      rgba(0, 0, 0, 0.9) 0px 1px 3px -1px;
     color: #fff;
     text-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.4);
     font-size: 1rem;
@@ -168,38 +173,13 @@ export const GoalTile = styled.div`
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.9) 0px 1px 3px -1px;
 
-  /* animation: 400ms ease 1 ${({ fadeOut }) =>
-    fadeOut ? "fadeOut" : "fadeIn"}; */
-
   &.fade-out {
-    animation: 400ms ease 1 fadeOut;
+    animation: 400ms ease 1 ${fadeOut};
     animation-fill-mode: forwards;
   }
 
   &.fade-in {
-    animation: 400ms ease 1 fadeIn;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes fadeOut {
-    from {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    to {
-      opacity: 0;
-      transform: translateY(10px);
-    }
+    animation: 400ms ease 1 ${fadeIn};
   }
 
   @media screen and (max-height: 812px) {

@@ -5,7 +5,6 @@ import { CardItem, NavLink, ItemTile } from "./SidebarNav.styles";
 import * as actions from "../../actions";
 import * as BiIcons from "react-icons/bi";
 import * as BsIcons from "react-icons/bs";
-import { CSSTransition } from "react-transition-group";
 
 const NotesList = ({
   projects,

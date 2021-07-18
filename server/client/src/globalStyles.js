@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle, keyframes } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -12,4 +12,39 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+const fadeIn = keyframes`
+
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  
+`;
+
+const fadeOut = keyframes`
+
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+  
+`;
+
+const renderScrollThumb = ({ style, ...props }) => {
+  const thumbStyle = {
+    backgroundColor: "#48e5c2",
+    borderRadius: "1rem",
+  };
+  return <div style={{ ...style, ...thumbStyle }} {...props} />;
+};
+
 export default GlobalStyle;
+export { fadeIn, fadeOut, renderScrollThumb };

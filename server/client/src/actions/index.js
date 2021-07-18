@@ -4,6 +4,7 @@ import {
   FETCH_PROJECTS,
   NOTE_SELECTED,
   DELETE_NOTE,
+  LOGOUT,
 } from "./types";
 
 export const fetchUser = () => async (dispatch) => {
@@ -29,4 +30,8 @@ export const setSelectedNote = (note) => ({
 export const deleteNote = (projectId, noteId) => ({
   type: DELETE_NOTE,
   payload: { projectId, noteId },
+});
+
+export const logout = () => ({
+  type: LOGOUT,
 });

@@ -6,6 +6,7 @@ const User = mongoose.model("User");
 
 module.exports = (app) => {
   app.get("/api/projects", async (req, res, next) => {
+    console.log(req.user);
     try {
       const projects = await Project.find({ _user: req.user.id });
       return res.status(200).json(projects);
