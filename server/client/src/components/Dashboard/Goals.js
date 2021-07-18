@@ -66,6 +66,14 @@ const Goals = ({ user, fetchUser }) => {
     });
   };
 
+  const renderScrollThumb = ({ style, ...props }) => {
+    const thumbStyle = {
+      backgroundColor: "#48e5c2",
+      borderRadius: "1rem",
+    };
+    return <div style={{ ...style, ...thumbStyle }} {...props} />;
+  };
+
   return (
     <GoalContainer>
       <GoalHeader>
@@ -87,8 +95,17 @@ const Goals = ({ user, fetchUser }) => {
           <BsIcons.BsX className="goal-btn" />
         </button>
       </StyledInput>
-
-      {renderGoals()}
+      <Scrollbars
+        style={{
+          height: "100%",
+          width: "100%",
+          borderRadius: "1.5rem",
+        }}
+        renderThumbVertical={renderScrollThumb}
+        autoHide
+      >
+        {renderGoals()}
+      </Scrollbars>
     </GoalContainer>
   );
 };

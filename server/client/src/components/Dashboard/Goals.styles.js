@@ -2,13 +2,21 @@ import styled from "styled-components";
 
 export const GoalContainer = styled.div`
   border-radius: 30px;
-  height: 311px;
-  max-height: 311px;
+  height: 50vh;
+  max-height: 50vh;
   margin: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+
+  @media screen and (max-height: 812px) {
+    height: 38vh;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 50%;
+  }
 `;
 
 export const GoalHeader = styled.div`
@@ -30,6 +38,7 @@ export const StyledInput = styled.div`
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.9) 0px 1px 3px -1px;
   border-radius: 15px;
+  margin-bottom: 0.5rem;
 
   input {
     box-sizing: border-box;
@@ -38,7 +47,6 @@ export const StyledInput = styled.div`
     text-align: center;
     border: none;
     outline: none;
-    height: 100%;
     width: 85%;
     border-radius: 15px 0 0 15px;
     background: #48e5c2;
@@ -49,11 +57,15 @@ export const StyledInput = styled.div`
     }
 
     &.goal-input {
-      min-height: 3.5rem;
+      height: 3.5rem;
+
+      @media screen and (max-height: 812px) {
+        height: 3rem;
+      }
     }
 
     &.project-input {
-      min-height: 2.5rem;
+      height: 2.5rem;
     }
 
     &.delete-active {
@@ -69,7 +81,6 @@ export const StyledInput = styled.div`
     border: none;
     border-radius: 0 15px 15px 0;
     background-color: #121217;
-    min-height: 3.5rem;
 
     width: 15%;
     //css scan #33
@@ -86,11 +97,15 @@ export const StyledInput = styled.div`
     transition: background-color 400ms ease;
 
     &.goal-input {
-      min-height: 3.5rem;
+      height: 3.5rem;
+
+      @media screen and (max-height: 812px) {
+        height: 3rem;
+      }
     }
 
     &.project-input {
-      min-height: 2.5rem;
+      height: 2.5rem;
     }
 
     &:hover {
@@ -143,7 +158,7 @@ export const GoalTile = styled.div`
   background-color: #161616;
   color: #fcfaf9;
   width: 100%;
-  min-height: 3.5rem;
+  height: 3.5rem;
   font-size: 1.25rem;
   border-radius: 15px;
   margin: 0.5rem 0 0;
@@ -185,6 +200,10 @@ export const GoalTile = styled.div`
       opacity: 0;
       transform: translateY(10px);
     }
+  }
+
+  @media screen and (max-height: 812px) {
+    height: 3rem;
   }
 `;
 
