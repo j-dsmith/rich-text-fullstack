@@ -36,7 +36,7 @@ const Dashboard = ({ user, fetchUser }) => {
       </DashboardHeader>
       <Calendar />
       <Goals />
-      <Info />
+      <Info className="info-widget" />
       <SidebarNav />
       <LogoutBtn>
         <a href="/api/logout">Logout</a>

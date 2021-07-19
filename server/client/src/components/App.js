@@ -13,11 +13,11 @@ import SidebarNav from "./SidebarNav/SidebarNav";
 
 class App extends Component {
   componentDidMount() {
-    const user = this.props.fetchUser();
+    this.props.fetchUser();
   }
 
   componentDidUpdate() {
-    this.props.fetchProjects();
+    if (this.props.auth._id) this.props.fetchProjects();
   }
 
   render() {

@@ -5,7 +5,7 @@ export const GoalContainer = styled.div`
   border-radius: 2rem;
   border: 1px solid #282828;
   background-color: #282828;
-  margin: 1rem;
+  margin: 1rem 1rem 0 1rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -14,11 +14,13 @@ export const GoalContainer = styled.div`
   padding: 1rem;
   box-shadow: inset 20px 20px 60px #222222, inset -20px -20px 60px #2e2e2e;
 
-  @media screen and (max-height: 812px) {
-    height: 38vh;
+  @media screen and (max-width: 768px) {
+    height: 40%;
+    max-height: 40%;
   }
 
-  @media screen and (min-width: 1024px) {
+  @media screen and (max-height: 812px) and (max-width: 768px) {
+    height: 30%;
   }
 `;
 
@@ -30,7 +32,7 @@ export const GoalHeader = styled.div`
   text-shadow: 0.5px 0.5px 3px rgba(0, 0, 0, 0.4);
 
   h2 {
-    margin: 1rem 0;
+    margin: 0.5rem 0;
   }
 `;
 

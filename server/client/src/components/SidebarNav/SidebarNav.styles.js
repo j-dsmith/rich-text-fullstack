@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export const StyledNav = styled.nav`
   background: #121217;
   color: #fcfaf9;
-  height: 60px;
+  height: 8vh;
   width: 100%;
   border-radius: 30px 30px 0 0;
   position: fixed;

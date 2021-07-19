@@ -13,7 +13,7 @@ const MyEditor = ({ selectedNote, setSelectedNote, match, fetchProjects }) => {
   useEffect(() => {
     fetchProjects();
     setUpdatedEditorText(selectedNote.content);
-  }, [selectedNote._id]);
+  }, [selectedNote._id, selectedNote.content, fetchProjects]);
 
   const modules = {
     toolbar: [

@@ -2,7 +2,11 @@ import styled from "styled-components";
 import { fadeIn } from "../../globalStyles";
 
 export const DashboardContainer = styled.div`
-  height: 93vh;
+  height: 92vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   @media screen and (min-width: 1024px) {
     display: grid;
@@ -27,7 +31,7 @@ export const DashboardHeader = styled.div`
   grid-area: head;
 
   h1 {
-    margin: 0 1rem 2rem 1rem;
+    margin: 0 1rem 1rem 1rem;
     color: #48e5c2;
     line-height: 2rem;
   }
@@ -41,7 +45,7 @@ export const DashboardHeader = styled.div`
 export const StyledCalendar = styled.div`
   background: #121217;
   border-radius: 30px;
-  margin: 1rem;
+  margin: 1rem 1rem 0 1rem;
   animation: 400ms ease 1 ${fadeIn};
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.9) 0px 1px 3px -1px;
@@ -127,6 +131,7 @@ export const StyledClock = styled.div`
   color: #fcfaf9;
   max-width: 100%;
   box-shadow: inset 20px 20px 60px #222222, inset -20px -20px 60px #2e2e2e;
+  display: block;
 
   h2 {
     font-size: 2rem;
@@ -134,6 +139,10 @@ export const StyledClock = styled.div`
     margin: 0;
     font-weight: 400;
     text-align: center;
+  }
+
+  @media screen and (max-width: 1023px) {
+    display: none;
   }
 `;
 
@@ -178,15 +187,15 @@ export const InfoTile = styled.div`
 
 export const LogoutBtn = styled.button`
   grid-area: logout;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   margin: 1rem;
-  height: 60px;
-  width: 120px;
+  height: 3rem;
+  width: 6rem;
   align-self: flex-end;
   justify-self: flex-end;
   border-radius: 1rem;
   border: none;
-  color: #df224b;
+  color: #fcfaf9;
   background-color: #121217;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.9) 0px 1px 3px -1px;
