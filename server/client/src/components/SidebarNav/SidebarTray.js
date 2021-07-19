@@ -106,7 +106,7 @@ const SidebarTray = ({
           <Scrollbars
             style={{
               height: "100%",
-              borderRadius: "1.5rem",
+              borderRadius: "0 0 1.5rem 1.5rem",
               padding: "1rem",
               boxSizing: "border-box",
             }}

@@ -9,6 +9,7 @@ const userSchema = new Schema({
   name: String,
   password: String,
   goals: [GoalSchema],
+  goalsCompleted: Number,
 });
 
 userSchema.plugin(passportLocalMongoose);

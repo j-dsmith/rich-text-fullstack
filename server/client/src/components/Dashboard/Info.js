@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { StyledClock, InfoTile, TileContainer } from "./Dashboard.styles";
 
-const Clock = ({ projects }) => {
+const Clock = ({ user, projects }) => {
   const [currentTime, setCurrentTime] = useState(
     new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
   );
@@ -37,6 +37,10 @@ const Clock = ({ projects }) => {
           <h3>Total Notes</h3>
           <h4>{getInfoTileData().numNotes}</h4>
         </InfoTile>
+        <InfoTile bgColor="turqoise" textColor="dark">
+          <h3>Goals Completed</h3>
+          <h4>{user.goalsCompleted}</h4>
+        </InfoTile>
       </TileContainer>
     </StyledClock>
   );
@@ -44,6 +48,7 @@ const Clock = ({ projects }) => {
 
 const mapStateToProps = (state) => ({
   projects: state.projects.projects,
+  user: state.auth,
 });
 
 export default connect(mapStateToProps)(Clock);

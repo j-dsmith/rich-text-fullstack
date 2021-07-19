@@ -95,6 +95,7 @@ module.exports = (app) => {
       const user = await User.findOne({ _id: req.user.id });
 
       await user.goals.id(req.params.goalId).remove();
+      await user.update({ $inc: { goalsCompleted: 1 } });
       user.save();
 
       res.send("goal deleted");

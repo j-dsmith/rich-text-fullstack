@@ -193,11 +193,16 @@ export const LogoutBtn = styled.button`
   transition: background-color 400ms ease;
   cursor: pointer;
 
-  &:focus {
-    outline: none;
-  }
-
   &:hover {
     background-color: rgba(18, 18, 23, 0.7);
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  a:visited {
+    color: inherit;
   }
 `;

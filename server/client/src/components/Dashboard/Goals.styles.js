@@ -114,7 +114,7 @@ export const StyledInput = styled.div`
     }
 
     &:hover {
-      background-color: rgba(18, 18, 23, 0.75);
+      background-color: rgba(18, 18, 23, 0.7);
     }
 
     .goal-btn {

@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { withRouter, Redirect } from "react-router";
-import axios from "axios";
+import { withRouter } from "react-router";
+
 import * as actions from "../../actions";
 import {
   DashboardContainer,
@@ -13,8 +13,7 @@ import SidebarNav from "../SidebarNav/SidebarNav";
 import Goals from "./Goals";
 import Info from "./Info";
 
-const Dashboard = ({ user, logout }) => {
-  const [logoutRedirect, setLogoutStatus] = useState(false);
+const Dashboard = ({ user, fetchUser }) => {
   const getTimeOfDay = () => {
     let timeOfDay = "";
     const time = new Date().getHours();
@@ -29,11 +28,6 @@ const Dashboard = ({ user, logout }) => {
     return timeOfDay;
   };
 
-  const handleLogout = () => {
-    axios.get("/api/logout");
-    setLogoutStatus(true);
-  };
-
   return (
     <DashboardContainer>
       <DashboardHeader>
@@ -44,8 +38,9 @@ const Dashboard = ({ user, logout }) => {
       <Goals />
       <Info />
       <SidebarNav />
-      <LogoutBtn onClick={handleLogout}>Logout</LogoutBtn>
-      {logoutRedirect && <Redirect to="/login" />}
+      <LogoutBtn>
+        <a href="/api/logout">Logout</a>
+      </LogoutBtn>
     </DashboardContainer>
   );
 };
