@@ -11,8 +11,12 @@ export const GoalContainer = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   grid-area: goals;
-  padding: 1rem;
+  padding: 1.5rem;
   box-shadow: inset 20px 20px 60px #222222, inset -20px -20px 60px #2e2e2e;
+
+  @media screen and (max-width: 1024px) {
+    margin: 1rem;
+  }
 
   @media screen and (max-width: 768px) {
     height: 40%;
@@ -68,6 +72,10 @@ export const StyledInput = styled.div`
 
       @media screen and (max-height: 812px) {
         height: 3rem;
+      }
+
+      @media screen and (max-width: 320px) {
+        font-size: 1rem;
       }
     }
 

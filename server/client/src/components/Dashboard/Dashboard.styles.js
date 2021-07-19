@@ -11,16 +11,16 @@ export const DashboardContainer = styled.div`
   @media screen and (min-width: 1024px) {
     display: grid;
     grid-template-rows: repeat(8, 1fr);
-    /* grid-template-columns: repeat(4, 1fr); */
+    grid-template-columns: repeat(4, 1fr);
     grid-template-areas:
       "head head head head"
-      "cal cal clock clock"
-      "cal cal clock clock"
-      "cal cal clock clock"
-      "goals goals . ."
-      "goals goals . ."
-      "goals goals . ."
-      "goals goals . logout";
+      "cal cal info info"
+      "cal cal info info"
+      "cal cal info info"
+      "goals goals info info"
+      "goals goals info info"
+      "goals goals info info"
+      "goals goals info info";
   }
 `;
 
@@ -120,21 +120,23 @@ export const CalendarDays = styled.div`
 `;
 
 export const StyledClock = styled.div`
-  grid-area: clock;
+  display: block;
+  grid-area: info;
   background-color: #282828;
   border-radius: 2rem;
   border: 1px solid #282828;
   margin: 1rem;
-  padding-top: 1rem;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   color: #fcfaf9;
   max-width: 100%;
+
   box-shadow: inset 20px 20px 60px #222222, inset -20px -20px 60px #2e2e2e;
-  display: block;
 
   h2 {
-    font-size: 2rem;
+    font-size: 3rem;
 
     margin: 0;
     font-weight: 400;
@@ -148,15 +150,17 @@ export const StyledClock = styled.div`
 
 export const TileContainer = styled.div`
   display: flex;
-  justify-content: space-evenly;
   align-items: center;
-  height: 100%;
+  justify-content: space-between;
   max-width: 100%;
+  margin-top: auto;
 `;
 
 export const InfoTile = styled.div`
-  height: 175px;
-  width: 175px;
+  height: 200px;
+
+  width: 200px;
+
   border-radius: 2rem;
   background-color: ${({ bgColor }) =>
     bgColor === "black" ? "#121217" : "#48e5c2"};
@@ -182,6 +186,21 @@ export const InfoTile = styled.div`
     text-align: center;
     margin: 0;
     padding: 0.5rem 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: rgba(252, 250, 249, 0.8);
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 400ms ease, color 400ms ease;
+
+    &:hover {
+      background-color: rgba(18, 18, 23, 0.7);
+      color: rgb(18, 18, 23);
+    }
   }
 `;
 
@@ -214,4 +233,49 @@ export const LogoutBtn = styled.button`
   a:visited {
     color: inherit;
   }
+
+  @media screen and (min-width: 1024px) {
+    display: none;
+  }
+`;
+
+export const ForecastContainer = styled.div`
+  border-radius: 2rem;
+  background-color: #121217;
+  height: 25%;
+  margin-top: 1rem;
+  display: flex;
+`;
+
+export const TempTile = styled.div`
+  color: #48e5c2;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  h3 {
+    font-size: 3.5rem;
+    font-weight: 400;
+    margin: 0;
+  }
+  .temps {
+    width: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .temp-range {
+    display: flex;
+    justify-content: center;
+    span {
+      margin: 0 0.25rem;
+    }
+  }
+`;
+
+export const WeatherInfo = styled.div`
+  width: 50%;
 `;

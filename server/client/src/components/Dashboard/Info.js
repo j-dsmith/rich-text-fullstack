@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { StyledClock, InfoTile, TileContainer } from "./Dashboard.styles";
+import Forecast from "./Forecast";
 
 const Clock = ({ user, projects }) => {
   const [currentTime, setCurrentTime] = useState(
@@ -28,18 +29,24 @@ const Clock = ({ user, projects }) => {
   return (
     <StyledClock>
       <h2>{currentTime}</h2>
+      <Forecast />
       <TileContainer>
-        <InfoTile bgColor="turqoise" textColor="dark">
+        <InfoTile bgColor="black" textColor="turqoise">
           <h3>Total Projects</h3>
           <h4>{getInfoTileData().numProjects}</h4>
         </InfoTile>
-        <InfoTile bgColor="black" textColor="turqoise">
+        <InfoTile bgColor="turqoise" textColor="dark">
           <h3>Total Notes</h3>
           <h4>{getInfoTileData().numNotes}</h4>
         </InfoTile>
+      </TileContainer>
+      <TileContainer>
         <InfoTile bgColor="turqoise" textColor="dark">
           <h3>Goals Completed</h3>
           <h4>{user.goalsCompleted}</h4>
+        </InfoTile>
+        <InfoTile textColor="light" bgColor="black">
+          <a href="/api/logout">Logout</a>
         </InfoTile>
       </TileContainer>
     </StyledClock>
