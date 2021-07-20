@@ -278,4 +278,14 @@ export const TempTile = styled.div`
 
 export const WeatherInfo = styled.div`
   width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.5rem;
+  box-sizing: border-box;
+
+  h3 {
+    margin: 0;
+    color: #48e5c2;
+  }
 `;
