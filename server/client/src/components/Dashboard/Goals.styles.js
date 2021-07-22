@@ -14,17 +14,19 @@ export const GoalContainer = styled.div`
   padding: 1.5rem;
   box-shadow: inset 20px 20px 60px #222222, inset -20px -20px 60px #2e2e2e;
 
-  @media screen and (max-width: 1024px) {
-    margin: 1rem;
-  }
+  box-sizing: border-box;
 
   @media screen and (max-width: 768px) {
     height: 40%;
-    max-height: 40%;
   }
 
-  @media screen and (max-height: 812px) and (max-width: 768px) {
-    height: 30%;
+  @media screen and (max-width: 425px) {
+    height: 70%;
+  }
+
+  @media screen and (min-width: 1024px) {
+    margin: 1rem;
+    /* height: 100%; */
   }
 `;
 

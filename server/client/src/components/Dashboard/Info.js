@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { StyledClock, InfoTile, TileContainer } from "./Dashboard.styles";
+import { InfoWidget, InfoTile, TileContainer } from "./Dashboard.styles";
 import Forecast from "./Forecast";
 
 const Clock = ({ user, projects }) => {
@@ -27,7 +27,7 @@ const Clock = ({ user, projects }) => {
   };
 
   return (
-    <StyledClock>
+    <InfoWidget>
       <h2>{currentTime}</h2>
       <Forecast />
       <TileContainer>
@@ -49,7 +49,7 @@ const Clock = ({ user, projects }) => {
           <a href="/api/logout">Logout</a>
         </InfoTile>
       </TileContainer>
-    </StyledClock>
+    </InfoWidget>
   );
 };
 

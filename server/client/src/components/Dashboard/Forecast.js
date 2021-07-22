@@ -25,6 +25,7 @@ const Forecast = () => {
     );
 
     setForecast(res.data.forecast.forecastday);
+    console.log(res.data);
   };
 
   useEffect(() => {
@@ -36,7 +37,19 @@ const Forecast = () => {
     <ForecastContainer>
       <WeatherInfo>
         <h3>{currentCity}</h3>
-        {condition}
+        <p id="condition">{condition}</p>
+        <p>
+          Chance of Rain:
+          {forecast[0] ? " " + forecast[0].day.daily_chance_of_rain + "%" : ""}
+        </p>
+        <p>
+          Visibility:
+          {forecast[0] ? " " + forecast[0].day.avgvis_miles + "mi" : ""}
+        </p>
+        <p>
+          Wind:
+          {forecast[0] ? " " + forecast[0].day.maxwind_mph + "mph (max)" : ""}
+        </p>
       </WeatherInfo>
       <TempTile>
         <div className="temps">

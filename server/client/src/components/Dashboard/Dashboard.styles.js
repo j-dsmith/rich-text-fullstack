@@ -51,6 +51,7 @@ export const StyledCalendar = styled.div`
     rgba(0, 0, 0, 0.9) 0px 1px 3px -1px;
   transition: transform 300ms ease;
   grid-area: cal;
+  display: none;
 
   h2 {
     margin: 0;
@@ -63,6 +64,13 @@ export const StyledCalendar = styled.div`
     @media screen and (min-width: 1024px) {
       padding: 1rem;
     }
+  }
+
+  @media screen and (min-width: 768px) {
+    display: block;
+  }
+
+  @media screen and (min-width: 1024px) {
   }
 `;
 
@@ -119,7 +127,7 @@ export const CalendarDays = styled.div`
   }
 `;
 
-export const StyledClock = styled.div`
+export const InfoWidget = styled.div`
   display: block;
   grid-area: info;
   background-color: #282828;
@@ -272,6 +280,7 @@ export const TempTile = styled.div`
     justify-content: center;
     span {
       margin: 0 0.25rem;
+      color: #fcfaf9;
     }
   }
 `;
@@ -287,5 +296,17 @@ export const WeatherInfo = styled.div`
   h3 {
     margin: 0;
     color: #48e5c2;
+    font-size: 2rem;
+    line-height: 2.25rem;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  #condition {
+    margin: 0;
+    font-size: 1.25rem;
   }
 `;
