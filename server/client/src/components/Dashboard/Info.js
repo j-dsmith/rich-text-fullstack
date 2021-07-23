@@ -45,7 +45,7 @@ const Clock = ({ user, projects }) => {
           <h3>Goals Completed</h3>
           <h4>{user.goalsCompleted}</h4>
         </InfoTile>
-        <InfoTile textColor="light" bgColor="black">
+        <InfoTile className="logout-tile" textColor="light" bgColor="black">
           <a href="/api/logout">Logout</a>
         </InfoTile>
       </TileContainer>

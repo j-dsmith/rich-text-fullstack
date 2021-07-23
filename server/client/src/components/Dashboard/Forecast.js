@@ -58,13 +58,13 @@ const Forecast = () => {
             <span>
               H:
               {forecast[0]
-                ? String(forecast[0].day.maxtemp_f).substring(0, 2)
+                ? " " + String(forecast[0].day.maxtemp_f).substring(0, 2)
                 : "--"}
             </span>
             <span>
               L:
               {forecast[0]
-                ? String(forecast[0].day.mintemp_f).substring(0, 2)
+                ? " " + String(forecast[0].day.mintemp_f).substring(0, 2)
                 : "--"}
             </span>
           </div>

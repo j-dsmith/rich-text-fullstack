@@ -22,6 +22,31 @@ export const DashboardContainer = styled.div`
       "goals goals info info"
       "goals goals info info";
   }
+
+  @media screen and (min-width: 1440px) {
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-areas:
+      "nav nav head head head head head head"
+      "nav nav cal cal cal info info info"
+      "nav nav cal cal cal info info info"
+      "nav nav cal cal cal info info info"
+      "nav nav goals goals goals info info info"
+      "nav nav goals goals goals info info info"
+      "nav nav goals goals goals info info info"
+      "nav nav goals goals goals info info info";
+  }
+
+  @media screen and (max-height: 768px) {
+    grid-template-areas:
+      "head head head head"
+      "goals goals info info"
+      "goals goals info info"
+      "goals goals info info"
+      "goals goals info info"
+      "goals goals info info"
+      "goals goals info info"
+      "goals goals info info";
+  }
 `;
 
 export const DashboardHeader = styled.div`
@@ -59,10 +84,9 @@ export const StyledCalendar = styled.div`
     font-size: 1.5rem;
     font-weight: 400;
     color: #fcfaf9;
-    padding-top: 1rem;
 
     @media screen and (min-width: 1024px) {
-      padding: 1rem;
+      padding: 0.5rem;
     }
   }
 
@@ -70,7 +94,8 @@ export const StyledCalendar = styled.div`
     display: block;
   }
 
-  @media screen and (min-width: 1024px) {
+  @media screen and (max-height: 768px) {
+    display: none;
   }
 `;
 
@@ -84,8 +109,8 @@ export const Weekdays = styled.div`
   padding: 0 1rem;
 
   div {
-    height: 2rem;
-    width: 2rem;
+    /* height: 2rem;
+    width: 2rem; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -100,7 +125,9 @@ export const CalendarDays = styled.div`
   align-items: center;
   color: #fff;
   padding: 0 1rem 1rem;
-  margin-top: 0;
+  margin-top: 0.5rem;
+
+  /* height: 70%; */
 
   div {
     height: 2rem;
@@ -154,6 +181,9 @@ export const InfoWidget = styled.div`
   @media screen and (max-width: 1023px) {
     display: none;
   }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 export const TileContainer = styled.div`
@@ -184,6 +214,14 @@ export const InfoTile = styled.div`
     margin: 0;
     font-size: 1.25rem;
     color: ${({ textColor }) => (textColor === "dark" ? "#121217" : "#48e5c2")};
+
+    @media screen and (min-height: 1080px) {
+      font-size: 1.75rem;
+    }
+
+    @media screen and (min-height: 1440px) {
+      font-size: 2.25rem;
+    }
   }
 
   h4 {
@@ -194,6 +232,16 @@ export const InfoTile = styled.div`
     text-align: center;
     margin: 0;
     padding: 0.5rem 0;
+
+    @media screen and (min-height: 1080px) {
+      font-size: 3.75rem;
+      line-height: 3.75rem;
+    }
+
+    @media screen and (min-height: 1440px) {
+      font-size: 4.5rem;
+      line-height: 4.5rem;
+    }
   }
 
   a {
@@ -203,12 +251,45 @@ export const InfoTile = styled.div`
     font-size: 2.5rem;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 400ms ease, color 400ms ease;
+    transition: color 300ms ease;
+
+    @media screen and (min-height: 1080px) {
+      font-size: 2.75rem;
+    }
+
+    @media screen and (min-height: 1440px) {
+      font-size: 3.5rem;
+    }
 
     &:hover {
-      background-color: rgba(18, 18, 23, 0.7);
-      color: rgb(18, 18, 23);
+      color: #fcfaf9;
     }
+  }
+
+  &.logout-tile {
+    cursor: pointer;
+    transition: background-color 300ms ease;
+  }
+
+  &.logout-tile:hover {
+    background-color: rgba(18, 18, 23, 0.7);
+  }
+
+  @media screen and (max-height: 1440px) {
+    height: 300px;
+    width: 45%;
+  }
+
+  @media screen and (max-height: 1080px) {
+    height: 200px;
+  }
+
+  @media screen and (max-height: 900px) {
+    height: 150px;
+  }
+
+  @media screen and (max-height: 768px) {
+    height: 115px;
   }
 `;
 
@@ -253,6 +334,11 @@ export const ForecastContainer = styled.div`
   height: 25%;
   margin-top: 1rem;
   display: flex;
+  padding: 0.5rem;
+
+  @media screen and (max-height: 768px) {
+    /* height: 30%; */
+  }
 `;
 
 export const TempTile = styled.div`
@@ -267,12 +353,17 @@ export const TempTile = styled.div`
     font-size: 3.5rem;
     font-weight: 400;
     margin: 0;
+
+    @media screen and (min-height: 1440px) {
+      font-size: 5rem;
+    }
   }
   .temps {
-    width: 5rem;
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: flex-start; */
+    width: 100%;
+    text-align: center;
   }
 
   .temp-range {
@@ -281,6 +372,10 @@ export const TempTile = styled.div`
     span {
       margin: 0 0.25rem;
       color: #fcfaf9;
+
+      @media screen and (min-height: 1440px) {
+        font-size: 1.5rem;
+      }
     }
   }
 `;
@@ -290,6 +385,7 @@ export const WeatherInfo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: center;
   padding: 1.5rem;
   box-sizing: border-box;
 
@@ -298,15 +394,36 @@ export const WeatherInfo = styled.div`
     color: #48e5c2;
     font-size: 2rem;
     line-height: 2.25rem;
+
+    @media screen and (min-height: 1440px) {
+      font-size: 2.5rem;
+      line-height: 2.75rem;
+    }
+
+    @media screen and (max-height: 768px) {
+      font-size: 1.75rem;
+      line-height: 2rem;
+    }
   }
 
   p {
     margin: 0;
     font-size: 0.95rem;
+
+    @media screen and (min-height: 1440px) {
+      font-size: 1.25rem;
+    }
+
+    @media screen and (max-height: 768px) {
+      font-size: 0.75rem;
+    }
   }
 
   #condition {
     margin: 0;
     font-size: 1.25rem;
+  }
+
+  @media screen and (min-width: 1440px) {
   }
 `;
