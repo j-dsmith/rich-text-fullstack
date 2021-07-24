@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import * as actions from "../../actions";
 import ReactQuill from "react-quill";
 // import "react-quill/dist/quill.snow.css";
-import "../../../node_modules/react-quill/dist/quill.snow.css";
+import "./customStyles.css";
 import { EditorContainer, SaveBtn, NoteTitle } from "./Editor.styles";
 import axios from "axios";
 
@@ -72,7 +72,6 @@ const MyEditor = ({ selectedNote, setSelectedNote, match, fetchProjects }) => {
             onChange={setUpdatedEditorText}
             modules={modules}
             formats={formats}
-            theme="snow"
           >
             <div className="" style={{ padding: "1rem" }} />
           </ReactQuill>
