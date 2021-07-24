@@ -3,6 +3,7 @@ const cookieSession = require("cookie-session");
 const passport = require("passport");
 const mongoose = require("mongoose");
 const keys = require("./config/keys");
+const path = require("path");
 require("./models/User");
 require("./models/Project");
 require("./services/passport");
@@ -14,6 +15,7 @@ mongoose.connect(keys.mongoURI, {
 });
 
 const app = express();
+app.use("/static", express.static(path.join(__dirname, "client/build")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
