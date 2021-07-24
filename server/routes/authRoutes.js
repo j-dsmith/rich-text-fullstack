@@ -29,7 +29,7 @@ module.exports = (app) => {
   });
 
   app.get("/login", (req, res) => {
-    res.send("login");
+    res.redirect("/");
   });
 
   app.get("/api/current_user", (req, res) => {
