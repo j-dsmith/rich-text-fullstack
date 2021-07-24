@@ -3,7 +3,8 @@ import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
+// import "react-quill/dist/quill.snow.css";
+import "../../../node_modules/react-quill/dist/quill.snow.css";
 import { EditorContainer, SaveBtn, NoteTitle } from "./Editor.styles";
 import axios from "axios";
 
