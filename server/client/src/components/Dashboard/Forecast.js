@@ -11,7 +11,7 @@ const Forecast = () => {
 
   const fetchTemps = async () => {
     const res = await axios.get(
-      `http://api.weatherapi.com/v1/current.json?key=${process.env.REACT_APP_WEATHER_API_KEY}&q=auto:ip`
+      `https://api.weatherapi.com/v1/current.json?key=${process.env.REACT_APP_WEATHER_API_KEY}&q=auto:ip`
     );
 
     setCondition(res.data.current.condition.text);
@@ -21,7 +21,7 @@ const Forecast = () => {
 
   const fetchForecast = async () => {
     const res = await axios.get(
-      `http://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_WEATHER_API_KEY}&q=auto:ip`
+      `https://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_WEATHER_API_KEY}&q=auto:ip`
     );
 
     setForecast(res.data.forecast.forecastday);
