@@ -3,6 +3,7 @@ const cookieSession = require("cookie-session");
 const passport = require("passport");
 const mongoose = require("mongoose");
 const keys = require("./config/keys");
+const path = require("path");
 require("./models/User");
 require("./models/Project");
 require("./services/passport");
@@ -31,7 +32,6 @@ require("./routes/authRoutes")(app);
 require("./routes/projectRoutes")(app);
 
 if (process.env.NODE_ENV === "production") {
-  const path = require("path");
   app.use(express.static(path.join(__dirname, "client/build")));
 
   app.get("*", (req, res) => {
