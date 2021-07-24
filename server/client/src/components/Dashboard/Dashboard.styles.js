@@ -154,6 +154,10 @@ export const CalendarDays = styled.div`
     text-shadow: 0.5px 0.5px 3px rgba(0, 0, 0, 0.4);
     border-radius: 8px;
   }
+
+  @media screen and (min-width: 1440px) {
+    height: 100%;
+  }
 `;
 
 export const InfoWidget = styled.div`
@@ -254,6 +258,9 @@ export const InfoTile = styled.div`
     font-weight: bold;
     cursor: pointer;
     transition: color 300ms ease;
+    height: 100%;
+    display: grid;
+    place-items: center;
 
     @media screen and (min-height: 1080px) {
       font-size: 2.75rem;
