@@ -46,7 +46,7 @@ export const StyledTray = styled.div`
     rgba(81, 81, 81, 0.3)
   );
   z-index: 1;
-  height: 100vh;
+  height: 100%;
   margin: 0;
   width: 100%;
   /* border-radius: 2rem 2rem 0 0; */
