@@ -127,7 +127,6 @@ export const CalendarDays = styled.div`
   align-items: center;
   color: #fff;
   padding: 0 1rem 1rem;
-  margin-top: 0.5rem;
 
   /* height: 70%; */
 
@@ -156,7 +155,11 @@ export const CalendarDays = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
-    height: 100%;
+    height: 70%;
+  }
+
+  @media screen and (min-width: 2560px) {
+    height: 80%;
   }
 `;
 
