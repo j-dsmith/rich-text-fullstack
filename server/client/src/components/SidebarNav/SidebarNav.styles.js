@@ -83,7 +83,7 @@ export const StyledTray = styled.div`
   }
 
   &.tray-active {
-    transform: translateY(0);
+    transform: translateY(0%);
 
     @media screen and (min-width: 1440px) {
       transform: translateX(0%);
