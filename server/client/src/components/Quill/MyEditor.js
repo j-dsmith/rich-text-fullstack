@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import * as actions from "../../actions";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { EditorContainer, SaveBtn, NoteTitleStatic } from "./Editor.styles";
+import { EditorContainer, SaveBtn, NoteTitle } from "./Editor.styles";
 import axios from "axios";
 
 const MyEditor = ({ selectedNote, setSelectedNote, match, fetchProjects }) => {
@@ -60,7 +60,7 @@ const MyEditor = ({ selectedNote, setSelectedNote, match, fetchProjects }) => {
 
   return (
     <EditorContainer>
-      <NoteTitleStatic>{selectedNote.title || "Title"}</NoteTitleStatic>
+      <NoteTitle>{selectedNote.title || "Title"}</NoteTitle>
 
       {
         //! setup conditional check to render empty editor
@@ -71,9 +71,10 @@ const MyEditor = ({ selectedNote, setSelectedNote, match, fetchProjects }) => {
             onChange={setUpdatedEditorText}
             modules={modules}
             formats={formats}
-            y
             theme="snow"
-          />
+          >
+            <div className="" style={{ padding: "1rem" }} />
+          </ReactQuill>
         )
       }
 

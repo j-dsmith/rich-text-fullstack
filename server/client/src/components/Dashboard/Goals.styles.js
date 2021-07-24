@@ -83,6 +83,11 @@ export const StyledInput = styled.div`
 
     &.project-input {
       height: 2.5rem;
+
+      @media screen and (min-width: 1440px) {
+        height: 60px;
+        font-size: 1.5rem;
+      }
     }
 
     &.delete-active {
@@ -123,6 +128,11 @@ export const StyledInput = styled.div`
 
     &.project-input {
       height: 2.5rem;
+
+      @media screen and (min-width: 1440px) {
+        height: 60px;
+        font-size: 1.5rem;
+      }
     }
 
     &:hover {
@@ -139,6 +149,10 @@ export const StyledInput = styled.div`
       font-size: 1.75rem;
       animation: 300ms ease 1 rotateX;
       animation-fill-mode: forwards;
+
+      @media screen and (min-width: 1440px) {
+        font-size: 2.5rem;
+      }
     }
 
     .add-btn {
@@ -147,6 +161,10 @@ export const StyledInput = styled.div`
       color: #48e5c2;
       animation: 300ms ease 1 rotatePlus;
       animation-fill-mode: forwards;
+
+      @media screen and (min-width: 1440px) {
+        font-size: 2.5rem;
+      }
     }
 
     @keyframes rotateX {

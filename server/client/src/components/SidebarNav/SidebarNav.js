@@ -58,23 +58,30 @@ class SidebarNav extends Component {
     return (
       <>
         <StyledNav>
-          <IconContainer onClick={this.handleProjectsClick}>
-            <BsIcons.BsFolder />
+          <IconContainer
+            className="projects"
+            onClick={this.handleProjectsClick}
+          >
+            <div className="nav-tile">
+              <BsIcons.BsFolder className="nav-icon" />
+              <span>Projects</span>
+            </div>
           </IconContainer>
-          {/* <i >
-          <BsIcons.BsCardText />
-        </i> */}
 
           <NavLink to="/home">
-            <IconContainer onClick={this.handleHomeClick}>
-              <BsIcons.BsHouse />
+            <IconContainer className="home" onClick={this.handleHomeClick}>
+              <div className="nav-tile">
+                <BsIcons.BsHouse className="nav-icon" />
+                <span>Home</span>
+              </div>
             </IconContainer>
           </NavLink>
-          {/* <i >
-          <BsIcons.BsStar />
-        </i> */}
-          <IconContainer onClick={this.handleTrashClick}>
-            <BsIcons.BsTrash />
+
+          <IconContainer className="trash" onClick={this.handleTrashClick}>
+            <div className="nav-tile">
+              <BsIcons.BsTrash className="nav-icon" />
+              <span>Delete</span>
+            </div>
           </IconContainer>
         </StyledNav>
         <SidebarTray

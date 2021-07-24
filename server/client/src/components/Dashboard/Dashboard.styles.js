@@ -34,6 +34,8 @@ export const DashboardContainer = styled.div`
       "nav nav goals goals goals info info info"
       "nav nav goals goals goals info info info"
       "nav nav goals goals goals info info info";
+
+    height: 100vh;
   }
 
   @media screen and (max-height: 768px) {

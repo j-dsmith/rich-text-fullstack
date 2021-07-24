@@ -16,6 +16,23 @@ export const StyledNav = styled.nav`
   align-items: center;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.9) 0px 1px 3px -1px;
+
+  @media screen and (min-width: 1440px) {
+    left: 0px;
+    width: 13%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 0 30px 30px 0;
+  }
+  .projects {
+    order: 2;
+  }
+
+  .trash {
+    order: 3;
+  }
 `;
 
 export const StyledTray = styled.div`
@@ -41,6 +58,10 @@ export const StyledTray = styled.div`
     color: #fcfaf9;
     margin: 1rem 0;
     text-shadow: 0.5px 0.5px 3px rgba(0, 0, 0, 0.4);
+
+    @media screen and (min-width: 1440px) {
+      font-size: 2rem;
+    }
   }
 
   .projects-link {
@@ -63,6 +84,16 @@ export const StyledTray = styled.div`
 
   &.tray-active {
     transform: translateY(0);
+
+    @media screen and (min-width: 1440px) {
+      transform: translateX(0%);
+    }
+  }
+
+  @media screen and (min-width: 1440px) {
+    transform: translateX(-100%);
+    width: 100%;
+    padding: 0 2% 0 15%;
   }
 `;
 
@@ -147,6 +178,12 @@ export const NavLink = styled(Link)`
   color: #fcfaf9;
   text-decoration: none;
   height: 100%;
+
+  @media screen and (min-width: 1440px) {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 `;
 
 export const ItemTile = styled.div`
@@ -156,6 +193,8 @@ export const ItemTile = styled.div`
   color: #fcfaf9;
   text-decoration: none;
   padding: 0.75rem 1rem;
+  width: 100%;
+  box-sizing: border-box;
 
   &:hover {
     .arrow-right {
@@ -167,6 +206,10 @@ export const ItemTile = styled.div`
   h4 {
     font-size: 1rem;
     margin: 0 auto 0 1rem;
+
+    @media screen and (min-width: 1440px) {
+      font-size: 1.25rem;
+    }
   }
 
   .folder,
@@ -174,10 +217,18 @@ export const ItemTile = styled.div`
     font-size: 1.25rem;
 
     color: #48e5c2;
+
+    @media screen and (min-width: 1440px) {
+      font-size: 1.5rem;
+    }
   }
 
   .minus {
     font-size: 1.25rem;
+
+    @media screen and (min-width: 1440px) {
+      font-size: 1.75rem;
+    }
   }
 
   .arrow-right {
@@ -185,18 +236,83 @@ export const ItemTile = styled.div`
     transition: opacity, transform 400ms ease;
     opacity: 0;
     transform: translateX(-1rem);
+
+    @media screen and (min-width: 1440px) {
+      font-size: 1.5rem;
+    }
+  }
+
+  @media screen and (min-width: 1440px) {
+    height: 60px;
+    display: flex;
+    align-items: center;
   }
 `;
 
 export const IconContainer = styled.div`
   position: relative;
-  font-size: 1.75rem;
+
   cursor: pointer;
   height: 100%;
   width: 4.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media screen and (min-width: 1440px) {
+    width: 100%;
+    justify-content: flex-start;
+
+    .nav-tile {
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
+      width: 100%;
+      height: 30%;
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background-color: #48e5c2;
+        transition: transform 300ms ease;
+        transform-origin: bottom;
+        transform: scaleY(0);
+      }
+
+      &:hover::before {
+        transform: scaleY(1);
+      }
+
+      span {
+        font-size: 1.55rem;
+        margin-left: 1.5rem;
+      }
+
+      .nav-icon {
+        font-size: 1.75rem;
+        line-height: 1.75rem;
+        margin-left: 1.5rem;
+      }
+    }
+  }
+
+  span {
+    @media screen and (max-width: 1440px) {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 1440px) {
+    .nav-icon {
+      font-size: 1.75rem;
+      line-height: 1.75rem;
+    }
+  }
 `;
 
 export const TrayHeader = styled.div`
