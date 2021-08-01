@@ -12,6 +12,11 @@ const userSchema = new Schema({
   goalsCompleted: Number,
 });
 
-userSchema.plugin(passportLocalMongoose);
+userSchema.plugin(passportLocalMongoose, {
+  errorMessages: {
+    IncorrectUsernameError: "Password or username are incorrect",
+    IncorrectPasswordError: "Password or username are incorrect",
+  },
+});
 
 mongoose.model("User", userSchema);

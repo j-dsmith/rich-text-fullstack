@@ -37,18 +37,6 @@ export const DashboardContainer = styled.div`
 
     height: 100vh;
   }
-
-  @media screen and (max-height: 768px) {
-    grid-template-areas:
-      "head head head head"
-      "goals goals info info"
-      "goals goals info info"
-      "goals goals info info"
-      "goals goals info info"
-      "goals goals info info"
-      "goals goals info info"
-      "goals goals info info";
-  }
 `;
 
 export const DashboardHeader = styled.div`
@@ -96,7 +84,7 @@ export const StyledCalendar = styled.div`
     display: block;
   }
 
-  @media screen and (max-height: 768px) {
+  @media screen and (max-height: 750px) {
     display: none;
   }
 `;
@@ -128,17 +116,14 @@ export const CalendarDays = styled.div`
   color: #fff;
   padding: 0 1rem 1rem;
 
-  /* height: 70%; */
-
   div {
-    height: 2rem;
-    width: 2rem;
-    border-radius: 8px;
+    height: 1.5rem;
+    width: 1.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 3px;
-    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
     cursor: pointer;
     color: rgba(252, 250, 249, 0.85);
   }
@@ -148,14 +133,16 @@ export const CalendarDays = styled.div`
   }
 
   .today {
-    background: #22dfb7;
     color: #fff;
-    text-shadow: 0.5px 0.5px 3px rgba(0, 0, 0, 0.4);
-    border-radius: 8px;
+    border-bottom: 2px solid #48e5c2;
   }
 
   @media screen and (min-width: 1440px) {
     height: 70%;
+
+    div {
+      font-size: 1rem;
+    }
   }
 
   @media screen and (min-width: 2560px) {
@@ -221,7 +208,7 @@ export const InfoTile = styled.div`
   h3 {
     text-align: center;
     margin: 0;
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     color: ${({ textColor }) => (textColor === "dark" ? "#121217" : "#48e5c2")};
 
     @media screen and (min-height: 1080px) {
@@ -231,13 +218,17 @@ export const InfoTile = styled.div`
     @media screen and (min-height: 1440px) {
       font-size: 2.25rem;
     }
+
+    @media screen and (min-width: 1440px) {
+      font-size: 1.5rem;
+    }
   }
 
   h4 {
     color: ${({ textColor }) => (textColor === "dark" ? "#2F2F3C" : "#48e5c2")};
     text-shadow: 0.5px 0.5px 2px rgba(0, 0, 0, 0.5);
-    font-size: 3.25rem;
-    line-height: 3.25rem;
+    font-size: 3rem;
+    line-height: 3rem;
     text-align: center;
     margin: 0;
     padding: 0.5rem 0;
@@ -251,13 +242,18 @@ export const InfoTile = styled.div`
       font-size: 4.5rem;
       line-height: 4.5rem;
     }
+
+    @media screen and (min-width: 1440px) {
+      font-size: 3.5rem;
+      line-height: 3.5rem;
+    }
   }
 
   a {
     text-decoration: none;
     color: rgba(252, 250, 249, 0.8);
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: bold;
     cursor: pointer;
     transition: color 300ms ease;
@@ -271,6 +267,10 @@ export const InfoTile = styled.div`
 
     @media screen and (min-height: 1440px) {
       font-size: 3.5rem;
+    }
+
+    @media screen and (min-width: 1440px) {
+      font-size: 2.5rem;
     }
 
     &:hover {

@@ -289,8 +289,13 @@ export const IconContainer = styled.div`
       }
 
       span {
-        font-size: 1.55rem;
-        margin-left: 1.5rem;
+        font-size: 1.5rem;
+        margin-left: 1rem;
+
+        @media screen and (min-width: 1440px) {
+          font-size: 1.55rem;
+          margin-left: 1.5rem;
+        }
       }
 
       .nav-icon {
@@ -302,7 +307,7 @@ export const IconContainer = styled.div`
   }
 
   span {
-    @media screen and (max-width: 1440px) {
+    @media screen and (max-width: 1400px) {
       display: none;
     }
   }
