@@ -296,6 +296,10 @@ export const IconContainer = styled.div`
           font-size: 1.55rem;
           margin-left: 1.5rem;
         }
+
+        @media screen and (min-width: 2560px) {
+          font-size: 2rem;
+        }
       }
 
       .nav-icon {

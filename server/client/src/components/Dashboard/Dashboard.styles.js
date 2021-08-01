@@ -74,6 +74,7 @@ export const StyledCalendar = styled.div`
     font-size: 1.5rem;
     font-weight: 400;
     color: #fcfaf9;
+    margin: 0.5rem;
 
     @media screen and (min-width: 1024px) {
       padding: 0.5rem;
@@ -99,8 +100,6 @@ export const Weekdays = styled.div`
   padding: 0 1rem;
 
   div {
-    /* height: 2rem;
-    width: 2rem; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -126,6 +125,11 @@ export const CalendarDays = styled.div`
     font-size: 0.85rem;
     cursor: pointer;
     color: rgba(252, 250, 249, 0.85);
+
+    @media screen and (min-width: 1440px) {
+      height: 2rem;
+      width: 2rem;
+    }
   }
 
   .firstDay {
@@ -270,7 +274,6 @@ export const InfoTile = styled.div`
     }
 
     @media screen and (min-width: 1440px) {
-      font-size: 2.5rem;
     }
 
     &:hover {
@@ -301,7 +304,8 @@ export const InfoTile = styled.div`
   }
 
   @media screen and (max-height: 768px) {
-    height: 115px;
+    height: 100px;
+    width: 40%;
   }
 `;
 
@@ -347,10 +351,6 @@ export const ForecastContainer = styled.div`
   margin-top: 1rem;
   display: flex;
   padding: 0.5rem;
-
-  @media screen and (max-height: 768px) {
-    /* height: 30%; */
-  }
 `;
 
 export const TempTile = styled.div`
@@ -371,9 +371,6 @@ export const TempTile = styled.div`
     }
   }
   .temps {
-    /* display: flex;
-    flex-direction: column;
-    justify-content: flex-start; */
     width: 100%;
     text-align: center;
   }
