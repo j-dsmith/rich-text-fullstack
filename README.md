@@ -1,5 +1,10 @@
 # rich-text-fullstack
 Fullstack expansion of Nucamp Honor's graduation project.
+
+## Import note
+
+Currently there is an issue with responsive styling on mobile device browsers due to vh units being rendered differently on mobile. The app is optimized on Desktop browsers but currently a complete fix for this issue has not been implemented. Pinch Zoom and certain scroll activity may result in a buggy experience on the dashboard in mobile browsers. Any future updates will address this issue.
+
 ## How I worked on this project
 
 For this project I built out an express api and backend for my NuCamp Honor's Graduation Project.
